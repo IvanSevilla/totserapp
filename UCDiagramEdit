@@ -1,0 +1,31 @@
+@startuml
+
+title TotSeries Case Diagram
+left to right direction
+skinparam packageStyle rect
+
+actor Usuari
+actor Soci
+Actor Admin
+
+rectangle {
+    Usuari -- (Registrar-se)
+    Usuari -- (Veure cataleg)
+    Soci -- (Veure cataleg)
+    Soci -- (Login)
+    (Descripcio serie)
+    (Veure episodi)
+    Soci -- (Valorar episodi)
+    Admin -- (Convertir Vip)
+    Admin -- (Veure cataleg)
+    Admin -- (Login)
+    
+    (Veure cataleg) <. (Descripcio serie) : extends
+    (Veure episodi) <. (Valorar episodi) : extends
+    
+    Soci -[hidden]- (Registrar-se)
+
+}
+
+
+@enduml
