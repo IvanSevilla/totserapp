@@ -1,0 +1,58 @@
+@startuml
+
+title Model de Domini TotSeries
+
+
+object TotSeries
+object Administrador
+object Usuari{
+nick
+password
+data naixement
+}
+object UsuariVip
+object UsuariRegistrat
+object Serie
+object Actor
+object Productora{
+nom 
+id
+data creacio
+}
+object Director
+object Artista
+object Persona{
+nom
+nacionalitat
+}
+object Temporada{
+numero
+}
+object Episodi{
+idioma
+duracio
+descripcio
+data de emissio
+}
+object Valoracio{
+valor
+}
+
+TotSeries"1"--"1...*"Usuari
+Usuari<|--Administrador
+Usuari<|-down-UsuariRegistrat
+Usuari<|-down-UsuariVip
+TotSeries"1"--"*"Serie
+Serie"1"--"*"Temporada
+Serie"1"--"1...*"Artista
+Artista<|-down-Director
+Artista<|-down-Actor
+Serie"1"--"1"Productora
+Temporada"1"--"*"Episodi
+Persona<|-left-Usuari
+Persona<|-right-Artista
+Episodi"1"-left-"*"Valoracio
+Valoracio"*"-right-"1"Usuari
+Episodi-[hidden]-UsuariRegistrat
+
+@enduml
