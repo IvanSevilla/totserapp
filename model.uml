@@ -1,17 +1,17 @@
 @startuml
 
 title Model de Domini TotSeries
-
+top to bottom direction
 
 object TotSeries
 object Administrador
 object Usuari{
 nick
 password
-data naixement
 }
-object UsuariVip
-object UsuariRegistrat
+object Soci{
+vip: Boolean
+}
 object Serie
 object Actor
 object Productora{
@@ -29,30 +29,42 @@ object Temporada{
 numero
 }
 object Episodi{
-idioma
-duracio
-descripcio
-data de emissio
+nom: String
+idioma: String
+duracio: int
+descripcio: String
+}
+object Data{
+dia: int
+mes: int
+any: int
 }
 object Valoracio{
-valor
+valor: int
 }
 
-TotSeries"1"--"1...*"Usuari
-Usuari<|--Administrador
-Usuari<|-down-UsuariRegistrat
-Usuari<|-down-UsuariVip
-TotSeries"1"--"*"Serie
-Serie"1"--"*"Temporada
-Serie"1"--"1...*"Artista
-Artista<|-down-Director
-Artista<|-down-Actor
-Serie"1"--"1"Productora
-Temporada"1"--"*"Episodi
-Persona<|-left-Usuari
-Persona<|-right-Artista
-Episodi"1"-left-"*"Valoracio
-Valoracio"*"-right-"1"Usuari
-Episodi-[hidden]-UsuariRegistrat
+TotSeries "1" -- "1..*" Usuari: Conté
+TotSeries "1" -- "*" Serie: Conté
+Usuari <|-- Administrador
+Usuari <|-- Soci
+Serie "1" o-- "*" Temporada: Està formada
+Serie "1" -- "1..*" Artista: Està feta per
+Artista <|-- Director
+Artista <|-- Actor
+Serie "*" -- "1" Productora: Produïda
+Temporada "1" o-- "*" Episodi: Composada
+Persona <|-- Usuari
+Persona <|-- Artista
+Episodi "1" -- "nom  *" Valoracio: té
+Valoracio  "nick   *" -- "1" Usuari: valora 
+Episodi "1" -- "1" Data: S'emet
+Usuari "*" -- "1" Data: Neix
+Usuari "*" -- "*" Episodi: Veu 
+note right on link  
+    <size:10>El usuari només</size>
+    <size:10>pot veure un episodi</size>
+    <size:10>a la vegada</size>
+end note
+
 
 @enduml
