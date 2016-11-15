@@ -9,9 +9,8 @@ object Usuari{
 nick
 password
 }
-object Soci{
-vip: Boolean
-}
+object Client
+object ClientVIP
 object Serie
 object Actor
 object Productora{
@@ -43,10 +42,25 @@ object Valoracio{
 valor: int
 }
 
+object VeureEpisodi
+object Estat
+object Vist
+object NoVist
+
+object Cataleg
+
+object CompteBancari
+object Facturacio
+
 TotSeries "1" -- "1..*" Usuari: Conté
-TotSeries "1" -- "*" Serie: Conté
+TotSeries "1" -- "*" Facturacio: Fa
+Cataleg "1" -- "*" Serie: Conté
+TotSeries "1" -- "1" Cataleg: Conté
 Usuari <|-- Administrador
-Usuari <|-- Soci
+Usuari <|-- Client
+Client <|-- ClientVIP
+CompteBancari "1" -- "1" Client: Té
+Administrador "1" -- "*" ClientVIP: Crea
 Serie "1" o-- "*" Temporada: Està formada
 Serie "1" -- "1..*" Artista: Està feta per
 Artista <|-- Director
@@ -58,13 +72,12 @@ Persona <|-- Artista
 Episodi "1" -- "nom  *" Valoracio: té
 Valoracio  "nick   *" -- "1" Usuari: valora 
 Episodi "1" -- "1" Data: S'emet
+Episodi "*" -- "*" VeureEpisodi 
+Estat <|-- Vist
+Estat <|-- NoVist
 Usuari "*" -- "1" Data: Neix
-Usuari "*" -- "*" Episodi: Veu 
-note right on link  
-    <size:10>El usuari només</size>
-    <size:10>pot veure un episodi</size>
-    <size:10>a la vegada</size>
-end note
-
+Facturacio "1" -- "1" Client: Cobra
+VeureEpisodi "*" -- "1" Estat: Té
+Client "*" -- "1" VeureEpisodi: Veu
 
 @enduml
