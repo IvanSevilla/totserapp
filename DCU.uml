@@ -5,27 +5,28 @@ left to right direction
 skinparam packageStyle rect
 
 actor Usuari
-actor Soci
-Actor Admin
+actor Client
+actor Admin
+actor Temps
 
 rectangle {
-    Usuari -- (Registrar-se)
-    Usuari -- (Veure cataleg)
-    Soci -- (Veure cataleg)
-    Soci -- (Login)
-    (Descripcio serie)
-    (Veure episodi)
-    Soci -- (Valorar episodi)
-    Admin -- (Convertir Vip)
-    Admin -- (Veure cataleg)
-    Admin -- (Login)
+    Usuari -- (CU1. Registrar-se)
+    Usuari -- (CU3. Veure cataleg)
+    Client -- (CU3. Veure cataleg)
+    Client -- (CU2. Login)
+    (CU4. Descripcio serie)
+    (CU5. Veure episodi)
+    Client -- (CU6. Valorar episodi)
+    Admin -- (CU7. Convertir Vip)
+    Admin -- (CU3. Veure cataleg)
+    Admin -- (CU2. Login)
+    Temps -- (CU8. Cobrar mensualment)
     
-    (Veure cataleg) <. (Descripcio serie) : extends
-    (Veure episodi) <. (Valorar episodi) : extends
+    (CU3. Veure cataleg) <. (CU4. Descripcio serie) : extends
+    (CU5. Veure episodi) .> (CU6. Valorar episodi) : include
     
-    Soci -[hidden]- (Registrar-se)
+    Client -[hidden]- (CU1. Registrar-se)
 
 }
-
 
 @enduml
