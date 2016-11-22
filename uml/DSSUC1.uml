@@ -1,0 +1,9 @@
+@startuml
+
+title Diagrama de seqüència de sistema UC1
+Actor Usuari
+Usuari -> Sistema: Registrar(nom, dni, adreça, nick, passw)
+
+Usuari <-- Sistema: Registre correcte
+
+@enduml
