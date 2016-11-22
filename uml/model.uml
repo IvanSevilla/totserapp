@@ -1,14 +1,9 @@
 @startuml
 
 title Model de Domini TotSeries
-top to bottom direction
 
 object TotSeries
 object Administrador
-object Usuari{
-nick
-password
-}
 object Client
 object ClientVIP
 object Serie
@@ -19,10 +14,14 @@ id
 data creacio
 }
 object Director
-object Artista
-object Persona{
+object Artista{
 nom
 nacionalitat
+}
+object Usuari{
+nom
+nick
+password
 }
 object Temporada{
 numero
@@ -67,8 +66,6 @@ Artista <|-- Director
 Artista <|-- Actor
 Serie "*" -- "1" Productora: Produïda
 Temporada "1" o-- "*" Episodi: Composada
-Persona <|-- Usuari
-Persona <|-- Artista
 Episodi "1" -- "nom  *" Valoracio: té
 Valoracio  "nick   *" -- "1" Usuari: valora 
 Episodi "1" -- "1" Data: S'emet
