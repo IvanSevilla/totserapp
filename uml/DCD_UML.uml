@@ -1,0 +1,98 @@
+@startuml
+
+title Diagrama de Classes de Disseny
+
+class TotSeries
+
+class Administrador {
++ void crearUsuari()
++ void afegirSerie()
++ void afegirTemporada()
++ void afegirEpisodi()
++ void ferVip()
+}
+
+class ClientVIP
+class Serie {
+- titol: String
+- descripcio: String
+}
+class Actor
+class Director
+class Cataleg
+class CompteBancari
+
+
+
+class Facturacio {
+}
+
+class Productora{
+- nom: String 
+- id: int
+- creacio: Date
+}
+
+class Artista{
+- nom: String
+- nacionalitat: String
+}
+
+class Usuari{
+- nom: String
+- nick: String
+- password: String
+}
+
+class Client {
++ void veureEpisodi()
++ void valorarEpisodi()
+}
+
+class Temporada{
+- numero: int
+}
+
+class Episodi{
+- nom: String
+- idioma: String
+- duracio: float
+- descripcio: String
++ void reproduir()
++ void valorar()
+}
+
+class Data{
+- dia: int
+- mes: int
+- any: int
+}
+
+class Valoracio{
+- valor: int
+- user: Usuari
+}
+
+
+TotSeries "1" *--> "1..*" Usuari: Conté
+TotSeries "1" --> "*" Facturacio: Fa
+Cataleg "1" o--> "*" Serie: Conté
+TotSeries "1" --> "1" Cataleg: Conté
+Usuari <|-- Administrador
+Usuari <|-- Client
+Client <|-- ClientVIP
+CompteBancari "1" <-- "1" Client: Té
+Administrador "1" --> "*" ClientVIP: Crea
+Serie "1" o--> "*" Temporada: Està formada
+Serie "1" *--> "1..*" Artista: Està feta per
+Artista <|-- Director
+Artista <|-- Actor
+Serie "*" --> "1" Productora: Produïda
+Temporada "1" o--> "*" Episodi: Composada
+Episodi "1" *--> "nom  *" Valoracio: té
+Valoracio  "nick   *" <-- "1" Usuari: valora 
+Episodi "1" --> "1" Data: S'emet
+Usuari "*" --> "1" Data: Neix
+Facturacio "1" --> "*" Client: Cobra
+
+@enduml
