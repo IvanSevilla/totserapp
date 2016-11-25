@@ -1,0 +1,16 @@
+@startuml
+
+actor Client
+participant Sistema
+
+Client -> Sistema : veureEpisodi(serie, temporada, episodi)
+Client <-- Sistema : Episodi finalitzat
+
+|||
+
+Client -> Sistema : valorarEpisodi(serie, temporada, episodi, valoracio)
+Client <-- Sistema : Episodi valorat
+
+
+
+@enduml

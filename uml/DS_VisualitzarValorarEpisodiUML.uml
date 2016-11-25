@@ -1,0 +1,49 @@
+@startuml
+
+participant TotSeries
+participant Cataleg
+participant Serie
+participant Temporada
+participant Episodi
+
+-> TotSeries : visualtzarEpisodi(serie, temporada, episodi)
+activate TotSeries
+
+<-- TotSeries
+
+
+|||
+
+-> TotSeries : valorarEpisodi(serie, temporada, episodi, valoracio)
+note left : valoracio també té el nick de l'usuari que la fa
+TotSeries -> Cataleg : valorarEpisodi(serie, temporada, episodi, valoracio)
+activate Cataleg
+
+Cataleg -> Serie : valorarEpisodi(temporada, episodi, valoracio)
+activate Serie
+
+Serie -> Temporada : valorar(episodi, valoracio)
+activate Temporada
+
+Temporada -> Episodi : valorar(valoracio)
+note right : Episodi té una llista de valoracions
+activate Episodi
+
+Episodi -> Episodi: afegirValoracio(valoracio)
+
+Episodi --> Temporada
+deactivate Episodi
+
+Temporada --> Serie
+deactivate Temporada
+
+Serie --> Cataleg
+deactivate Serie
+
+Cataleg --> TotSeries
+deactivate Cataleg
+
+<-- TotSeries
+deactivate TotSeries
+
+@enduml
