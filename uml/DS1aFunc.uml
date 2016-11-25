@@ -1,0 +1,18 @@
+@startuml
+
+title Diagrama de seqüència Alta nou client
+-> Sistema : registrar(nom, dni, adreca, nick, passw)
+Sistema -> DataManager : creaUsuari(nom, dni, adreca, nick, passw)
+DataManager -> Client : nouClient(nom, dni, adreca, nick, passw)
+Client --> DataManager : client1
+DataManager -> DataManager : found = findUsuari(c)
+alt found 
+    DataManager --> Sistema : True
+    <-- Sistema : Registre incorrecte
+else !found 
+    DataManager -> DataManager : usuaris.append(c)
+    DataManager --> Sistema : False
+    <-- Sistema : Registre correcte
+end
+
+@enduml
