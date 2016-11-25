@@ -1,0 +1,15 @@
+@startuml
+
+title Diagrama de seqüència Alta nou client
+-> Sistema : visualitzacioCataleg()
+Sistema -> DataManager : visualitzaCataleg()
+DataManager -> DataManager : String dades=""
+loop per cada serie i al sistema
+    DataManager -> Serie : dadesBasiques(i)
+    Serie --> DataManager : title=titol
+    DataManager -> DataManager : dades+="/n"+title
+end
+
+DataManager --> Sistema: retorna dades
+<-- Sistema : dades Cataleg
+@enduml
