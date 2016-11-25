@@ -1,0 +1,13 @@
+@startuml
+
+title Diagrama de seqüència de sistema Visualització d’un episodi i valoracio
+Actor Client
+Client -> Sistema: visualitzacioEpisodi(titol)
+
+Client <-- Sistema: Episodi finalitzat
+
+Client -> Sistema: valoracioEpisodi(valor)
+
+Client <-- Sistema: Valoració efectuadada correctament
+
+@enduml

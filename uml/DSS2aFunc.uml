@@ -1,0 +1,9 @@
+@startuml
+
+title Diagrama de seqüència de sistema Visualització del catàleg 
+Actor Client
+Client -> Sistema: visualitzacioCataleg()
+
+Client <-- Sistema: Dades cataleg
+
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+
+title Diagrama de seqüència de sistema Visualització episodis més valorats
+Actor Client
+Client -> Sistema: visualitzacioMesValorats()
+
+Client <-- Sistema: Mostra una llista amb els més valorats
+
+@enduml
