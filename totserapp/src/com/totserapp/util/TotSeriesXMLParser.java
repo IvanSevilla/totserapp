@@ -63,18 +63,18 @@ public class TotSeriesXMLParser {
 	}
 
 	/**
-	 * Obte les series per TotSeries
+	 * Obte les Series per TotSeries
 	 * 
 	 * @param doc document XML del que obtenir les dades
 	 */
 	private void obtenirSeries(Document doc) {
-		NodeList series = doc.getElementsByTagName("Serie");
+		NodeList Series = doc.getElementsByTagName("Serie");
 		String id, title, desc;
-		int numSeries = series.getLength();
+		int numSeries = Series.getLength();
 
-		// Parsejo tots els elements series
+		// Parsejo tots els elements Series
 		for(int i=0; i<numSeries; i++) {
-			Node serie = series.item(i);
+			Node serie = Series.item(i);
 
 			if(serie.getNodeType() == Node.ELEMENT_NODE){
 				Element eSerie = (Element)serie;
@@ -91,11 +91,15 @@ public class TotSeriesXMLParser {
 			
 				// Creem una nova serie amb la informacio obtinguda
 				dataManager.crearSerie(id, title, desc);
+				
 				// Obtenim informacio de la productora
 				this.obtenirProductora(eSerie, id);
 				
 				// Obtenim informacio dels artistes
 				this.obtenirArtistes(eSerie, id);
+                                
+                                // Obtenim informacio de les temporades
+                                this.obtenirTemporades(eSerie, id);
 			}
 		}
 	}
@@ -145,6 +149,85 @@ public class TotSeriesXMLParser {
 		}
 	}
 	
+        
+        /**
+	 * Obte informacio sobre les temporades d'una serie
+	 * 
+	 * @param eSerie serie on buscar les temporades
+	 * @param idSerie id de la serie
+	 */
+	private void obtenirTemporades(Element eSerie, String idSerie) {
+		NodeList temporades = eSerie.getElementsByTagName("temporada");
+		String numTemporada, numEpisodis;
+		int numTemporades = temporades.getLength();
+
+		// Parsejo tots els elements artist
+		for(int i=0; i<numTemporades; i++) {
+			Node temporada = temporades.item(i);
+
+			if(temporada.getNodeType() == Node.ELEMENT_NODE){
+                            
+                            Element eTemporada = (Element)temporada;
+                            
+                            NodeList nTemporada = eTemporada.getElementsByTagName("numeroTemporada");
+                            Element eeTemporada = (Element)nTemporada.item(0);
+                            numTemporada = eeTemporada.getTextContent();
+                            
+                            NodeList nEpisodi = eTemporada.getElementsByTagName("numeroEpisodis");
+                            Element eeEpisodi = (Element)nEpisodi.item(0);
+                            numEpisodis = eeEpisodi.getTextContent();
+                            
+                            dataManager.crearTemporada(numTemporada, numEpisodis);
+                            
+                            obtenirEpisodis(eTemporada, idSerie );
+			}			
+		}
+	}
+        
+        /**
+	 * Obte informacio sobre les temporades d'una serie
+	 * 
+	 * @param eSerie serie on buscar les temporades
+	 * @param idSerie id de la serie
+	 */
+	private void obtenirEpisodis(Element eTemporada, String idSerie) {
+		NodeList episodis = eTemporada.getElementsByTagName("episodi");
+		String title,  duration,  idioma,  description,  data;
+		int numEpisodis = episodis.getLength();
+
+		// Parsejo tots els elements episodi
+		for(int i=0; i<numEpisodis; i++) {
+			Node episodi = episodis.item(i);
+
+			if(episodi.getNodeType() == Node.ELEMENT_NODE){
+                            
+                            Element eEpisodi = (Element)episodi;
+                            
+                            NodeList nTitle = eEpisodi.getElementsByTagName("title");
+                            Element eeTitle = (Element)nTitle.item(0);
+                            title = eeTitle.getTextContent();
+                            
+                            NodeList nDuracio = eEpisodi.getElementsByTagName("duracio");
+                            Element eeDuracio = (Element)nDuracio.item(0);
+                            duration = eeDuracio.getTextContent();
+                            
+                            NodeList nIdioma = eEpisodi.getElementsByTagName("idioma");
+                            Element eeIdioma = (Element)nIdioma.item(0);
+                            idioma = eeIdioma.getTextContent();
+                            
+                            NodeList nDescription = eEpisodi.getElementsByTagName("description");
+                            Element eeDescription = (Element)nDescription.item(0);
+                            description = eeDescription.getTextContent();
+                            
+                            NodeList nData = eEpisodi.getElementsByTagName("data");
+                            Element eeData = (Element)nData.item(0);
+                            data = eeData.getTextContent();
+                            
+                            dataManager.crearEpisodi(idSerie,title,duration,idioma,description,data);
+			}			
+		}
+	}
+        
 	/**
 	 * Obte informacio sobre les valoracions
 	 * 
@@ -217,10 +300,10 @@ public class TotSeriesXMLParser {
 	private void obtenirClients(Document doc) {
 		NodeList clients = doc.getElementsByTagName("client");
 		String id, nom, usuari, password, vip, dni, adreca;
-		int numAdmins = clients.getLength();
+		int numClients = clients.getLength();
 
 		// Parsejo tots els elements client
-		for(int i=0; i<numAdmins; i++) {
+		for(int i=0; i<numClients; i++) {
 			Node client = clients.item(i);
 
 			if(client.getNodeType() == Node.ELEMENT_NODE){

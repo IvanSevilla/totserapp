@@ -1,9 +1,7 @@
 
 package com.totserapp.view;
 
-import com.totserapp.TotSeries;
 import com.totserapp.controller.TestController;
-import com.totserapp.model.TestClient;
 import com.totserapp.util.Consola;
 
 public class TestView extends View{
@@ -11,10 +9,10 @@ public class TestView extends View{
     
     @Override
     public void show(){
-        TestClient client = TotSeries.getDataManager().getClients().get(0);
+        //TestClient client = TotSeries.getDataManager().getClients().get(0);
         Consola.escriu("TOT SERIES\n");
         
-        Consola.escriu(client.toString());
+        //Consola.escriu(client.toString());
         
         Consola.escriu("\n\nIntroduce 'hola' para cambiar de vista: ");
         
