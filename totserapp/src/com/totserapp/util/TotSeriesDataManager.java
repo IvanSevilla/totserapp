@@ -54,7 +54,7 @@ public class TotSeriesDataManager {
             u = new ClientVIP(nom, usuari, password, adreca, dni);
         }
 
-        if(u != null) usuaris.put(id, u);
+        if(u != null) usuaris.put(usuari, u);
     }
 
     /**
@@ -72,9 +72,8 @@ public class TotSeriesDataManager {
     }
     
     public void crearTemporada(String numTemporada, String numEpisodis) {		
-        
-        System.out.println("Temporada: " + numTemporada + " Numero Episodis: "+ numEpisodis);
-        System.out.println("--------------------------------------------------");
+//        System.out.println("Temporada: " + numTemporada + " Numero Episodis: "+ numEpisodis);
+//        System.out.println("--------------------------------------------------");
     }
     
     public void crearEpisodi(String idSerie, String title, String duration, String idioma, String description, String data) {		
@@ -128,7 +127,7 @@ public class TotSeriesDataManager {
      */
 
     public void crearValoracio(String id, String client, String episodi, String puntuacio, String data) {
-        //Valoracio valoracio = new Valoracio(Integer.parseInt(puntuacio), client);
+        Valoracio valoracio = new Valoracio(Integer.parseInt(puntuacio), client);
     }
 
     /**
@@ -142,7 +141,7 @@ public class TotSeriesDataManager {
 
     public void crearAdmin(String id, String nom, String usuari, String password) {
         Usuari u = new Admin(nom, usuari, password, null, null);
-        usuaris.put(id, u);
+        usuaris.put(usuari, u);
     }
 
     public HashMap<String, Usuari> getUsuaris() {
