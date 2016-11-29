@@ -13,7 +13,7 @@ activate TotSeries
 <-- TotSeries
 deactivate TotSeries
 
--> Episodi : valorar()
+-> Episodi : valorar(valoracio)
 activate Episodi
 
 |||
