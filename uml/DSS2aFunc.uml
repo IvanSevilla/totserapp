@@ -1,6 +1,6 @@
 @startuml
 
-title Diagrama de seqüècia de sistema Visualitzaciódel catáleg 
+title Diagrama de seqüècia de sistema Visualització del catáleg 
 Actor Client
 Client -> TotSeries: visualitzacioCataleg()
 activate TotSeries
