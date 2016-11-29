@@ -2,8 +2,8 @@
 
 title Diagrama de seqüència de sistema UC1
 Actor Usuari
-Usuari -> Sistema: registrar(nom, dni, adreça, nick, passw)
-
-Usuari <-- Sistema: Registre correcte
-
+Usuari -> TotSeries: registrar(nom, dni, adreça, nick, passw)
+activate TotSeries
+Usuari <-- TotSeries: Registre correcte
+deactivate TotSeries
 @enduml
