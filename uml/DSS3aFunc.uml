@@ -1,13 +1,14 @@
 @startuml
 
-title Diagrama de seqüència de sistema Visualització d’un episodi i valoracio
+title Diagrama de seqÃ¼Ã¨cia de sistema VisualitzaciÃ³ d'un episodi i valoracio
 Actor Client
-Client -> Sistema: visualitzacioEpisodi(titol)
+Client -> TotSeries: visualitzacioEpisodi(titol)
+activate TotSeries
 
-Client <-- Sistema: Episodi finalitzat
+Client <-- TotSeries: Episodi finalitzat
 
-Client -> Sistema: valoracioEpisodi(valor)
+Client -> TotSeries: valoracioEpisodi(valor)
 
-Client <-- Sistema: Valoració efectuadada correctament
-
+Client <-- TotSeries: ValoraciÃ³ efectuadada correctament
+deactivate TotSeries
 @enduml
