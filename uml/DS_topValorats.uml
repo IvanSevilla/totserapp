@@ -1,0 +1,30 @@
+@startuml
+
+participant DataManager
+participant Episodi
+
+-> DataManager : episodisMesValorats()
+activate DataManager
+
+|||
+
+note right: llista = []
+
+loop for each Episodi
+
+DataManager -> Episodi : mitjanaValoracions()
+activate Episodi
+
+DataManager <-- Episodi : valoracions: float
+deactivate Episodi
+
+note right: llista.add(Episodi) en ordre utilitzant les valoracions com a key
+
+end
+
+|||
+
+<-- DataManager : llista
+deactivate DataManager
+
+@enduml
