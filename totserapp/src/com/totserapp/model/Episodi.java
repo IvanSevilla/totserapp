@@ -1,19 +1,42 @@
 package com.totserapp.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Episodi {
-    private HashMap<String, Valoracio> valoracions = new HashMap<>();
+    private ArrayList<Valoracio> valoracions = new ArrayList<>();
     
-    private String title, idioma, description, data, duration;
+    private String title, idioma, description, data, duration, numTemporada;
+    int numEpisodi;
 
-    public Episodi(String title, String idioma, String description, String data, String duration) {
+    public Episodi(String title, String idioma, String description, String data, String duration, String numTemporada, int numEpisodi) {
         this.title = title;
         this.idioma = idioma;
         this.description = description;
         this.data = data;
         this.duration = duration;
+        this.numTemporada = numTemporada;
+        this.numEpisodi = numEpisodi;
+        
+        Random random = new Random();
+        
+        int num = random.nextInt(100) + 1;
+        
+        for(int i = 0; i < num; i++){
+            int valor = random.nextInt(6) + 1;
+            valoracions.add(new Valoracio(valor, null));
+        }
     }
+    
+    public String toShortString(){
+        String episodi = numEpisodi < 10 ? "0" + numEpisodi : "" + numEpisodi;
+        String out = "";
+        out += "(" + numTemporada + "x" + episodi + ") " + title;
+        return out;
+    }
+    
+    
     
     @Override
     public String toString(){
@@ -26,8 +49,19 @@ public class Episodi {
         return "Episodi";
     }
     
+    public void valorar(Usuari usuari, int valor){
+        valoracions.add(new Valoracio(valor, null));
+    }
+    
+    public int getMitjanaValoracions(){
+        int sum = 0;
+        for(int i = 0; i < valoracions.size(); i++){
+            sum += valoracions.get(i).getValor();
+        }
+        return sum / valoracions.size();
+    }
 
-    public HashMap<String, Valoracio> getValoracions() {
+    public ArrayList<Valoracio> getValoracions() {
         return valoracions;
     }
     public String getTitle() {

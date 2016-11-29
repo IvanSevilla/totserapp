@@ -177,9 +177,9 @@ public class TotSeriesXMLParser {
                             Element eeEpisodi = (Element)nEpisodi.item(0);
                             numEpisodis = eeEpisodi.getTextContent();
                             
-                            dataManager.crearTemporada(numTemporada, numEpisodis);
+                            dataManager.crearTemporada(idSerie, numTemporada, numEpisodis);
                             
-                            obtenirEpisodis(eTemporada, idSerie );
+                            obtenirEpisodis(eTemporada, numTemporada, idSerie );
 			}			
 		}
 	}
@@ -190,7 +190,7 @@ public class TotSeriesXMLParser {
 	 * @param eSerie serie on buscar les temporades
 	 * @param idSerie id de la serie
 	 */
-	private void obtenirEpisodis(Element eTemporada, String idSerie) {
+	private void obtenirEpisodis(Element eTemporada, String numTemporada, String idSerie) {
 		NodeList episodis = eTemporada.getElementsByTagName("episodi");
 		String title,  duration,  idioma,  description,  data;
 		int numEpisodis = episodis.getLength();
@@ -223,7 +223,7 @@ public class TotSeriesXMLParser {
                             Element eeData = (Element)nData.item(0);
                             data = eeData.getTextContent();
                             
-                            dataManager.crearEpisodi(idSerie,title,duration,idioma,description,data);
+                            dataManager.crearEpisodi(idSerie,numTemporada, i+1, title,duration,idioma,description,data);
 			}			
 		}
 	}

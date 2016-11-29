@@ -1,7 +1,6 @@
 package com.totserapp.view;
 
 import com.totserapp.controller.RegistreController;
-import com.totserapp.model.Client;
 import com.totserapp.util.Consola;
 import com.totserapp.util.Constants;
 

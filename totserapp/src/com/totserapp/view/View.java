@@ -8,7 +8,6 @@ public class View {
     public void show(){
         
     }
-    
     public void imprimirEstatUsuari(){
         Usuari usuari = TotSeries.getInstance().getUsuariActual();
         if(usuari != null){

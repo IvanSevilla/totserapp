@@ -1,5 +1,6 @@
 package com.totserapp.util;
 
+import com.totserapp.TotSeries;
 import com.totserapp.model.Actor;
 import com.totserapp.model.Admin;
 import com.totserapp.model.Artista;
@@ -11,7 +12,11 @@ import com.totserapp.model.Productora;
 import com.totserapp.model.Serie;
 import com.totserapp.model.Usuari;
 import com.totserapp.model.Valoracio;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Data manager per TotSeries. Crea les estructures de dades necessàries 
@@ -71,14 +76,15 @@ public class TotSeriesDataManager {
 
     }
     
-    public void crearTemporada(String numTemporada, String numEpisodis) {		
+    public void crearTemporada(String idSerie, String numTemporada, String numEpisodis) {
+        //series.get(idSerie)
 //        System.out.println("Temporada: " + numTemporada + " Numero Episodis: "+ numEpisodis);
 //        System.out.println("--------------------------------------------------");
     }
     
-    public void crearEpisodi(String idSerie, String title, String duration, String idioma, String description, String data) {		
-        Episodi episodi = new Episodi(title, idioma, description, data, duration);
-        series.get(idSerie).getEpisodis().put(title, episodi);
+    public void crearEpisodi(String idSerie, String numTemporada, int numEpisodi, String title, String duration, String idioma, String description, String data) {		
+        Episodi episodi = new Episodi(title, idioma, description, data, duration, numTemporada, numEpisodi);
+        series.get(idSerie).getEpisodis().add(episodi);
     }
 
     /**
@@ -99,7 +105,7 @@ public class TotSeriesDataManager {
             artista = new Actor(nom, nacionalitat);
         }
         
-        if(artista != null) series.get(idSerie).getArtistes().put(id, artista);
+        if(artista != null) series.get(idSerie).getArtistes().add(artista);
     }
 
 
@@ -146,6 +152,51 @@ public class TotSeriesDataManager {
 
     public HashMap<String, Usuari> getUsuaris() {
         return usuaris;
+    }
+    
+    public HashMap<String, Serie> getSeries() {
+        return series;
+    }
+    
+    public ArrayList<Episodi> getEpisodisMesValorats(){
+        TotSeries totSeries = TotSeries.getInstance();
+        ArrayList<Episodi> episodis = new ArrayList<>();
+        
+        //Meter todos los episodios de todas las series en una misma lista.
+        
+         for(Map.Entry<String, Serie> entry : totSeries.getDataManager().getSeries().entrySet()) {
+            Serie serie = entry.getValue();
+            
+            for(int e = 0; e < serie.getEpisodis().size(); e++){
+                episodis.add(serie.getEpisodis().get(e));
+            }
+            
+         }
+        
+        // Ordenar por la media de valoraciones
+        
+        Collections.sort(episodis, new Comparator<Episodi>() {
+            @Override
+            public int compare(Episodi a, Episodi b) {
+                if(a.getMitjanaValoracions() > b.getMitjanaValoracions()){
+                    return -1;
+                }if(a.getMitjanaValoracions() < b.getMitjanaValoracions()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        });
+        
+        // Mostrar los 10 primeros
+        
+        if(episodis.size() > 10){
+            for(int e = episodis.size() - 1; e >=10; e--){
+                episodis.remove(e);
+            }
+        }
+        
+        return episodis;
     }
 	
 }
