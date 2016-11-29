@@ -1,9 +1,11 @@
 @startuml
 
-title Diagrama de seqüència de sistema Visualització episodis més valorats
+title Diagrama de seqÃ¼Ã¨ncia de sistema VisualitzaciÃ³ episodis mÃ©s valorats
 Actor Client
-Client -> Sistema: visualitzacioMesValorats()
+Client -> TotSeries: visualitzacioMesValorats()
+activate TotSeries
 
-Client <-- Sistema: Mostra una llista amb els més valorats
+Client <-- TotSeries: Mostra una llista amb els mÃ©s valorats
+deactivate TotSeries
 
 @enduml
