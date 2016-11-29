@@ -19,7 +19,14 @@ class Serie {
 }
 class Actor
 class Director
-class Cataleg
+
+class DataManager {
++void afegirClient()
++void eliminarClient()
++void afegirSerie()
++void eliminarSerie()
+}
+
 class CompteBancari
 
 
@@ -74,22 +81,22 @@ class Valoracio{
 }
 
 
-TotSeries "1" *--> "1..*" Usuari: ContÈ
+DataManager "1" *--> "1..*" Usuari: Cont√©
 TotSeries "1" --> "*" Facturacio: Fa
-Cataleg "1" o--> "*" Serie: ContÈ
-TotSeries "1" --> "1" Cataleg: ContÈ
+DataManager "1" *--> "*" Serie: Cont√©
+TotSeries "1" --> "1" DataManager: Cont√©
 Usuari <|-- Administrador
 Usuari <|-- Client
 Client <|-- ClientVIP
-CompteBancari "1" <-- "1" Client: TÈ
+CompteBancari "1" <-- "1" Client: T√©
 Administrador "1" --> "*" ClientVIP: Crea
-Serie "1" o--> "*" Temporada: Est‡ formada
-Serie "1" *--> "1..*" Artista: Est‡ feta per
+Serie "1" o--> "*" Temporada: Est√† formada
+Serie "1" *--> "1..*" Artista: Est√† feta per
 Artista <|-- Director
 Artista <|-- Actor
-Serie "*" --> "1" Productora: ProduÔda
+Serie "*" --> "1" Productora: Produ√Øda
 Temporada "1" o--> "*" Episodi: Composada
-Episodi "1" *--> "nom  *" Valoracio: tÈ
+Episodi "1" *--> "nom  *" Valoracio: t√©
 Valoracio  "nick   *" <-- "1" Usuari: valora 
 Episodi "1" --> "1" Data: S'emet
 Usuari "*" --> "1" Data: Neix
