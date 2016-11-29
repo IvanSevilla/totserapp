@@ -1,6 +1,6 @@
 @startuml
 
-title Diagrama de seqüència de sistema UC1
+title Diagrama de seqüència de sistema Alta nou client
 Actor Usuari
 Usuari -> TotSeries: registrar(nom, dni, adreça, nick, passw)
 activate TotSeries
