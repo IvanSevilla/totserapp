@@ -2,7 +2,10 @@
 
 title Diagrama de Classes de Disseny
 
-class TotSeries
+class TotSeries {
+- static instance: TotSeries
++ static TotSeries getInstance()
+}
 
 class Administrador {
 + void crearUsuari()
@@ -21,10 +24,10 @@ class Actor
 class Director
 
 class DataManager {
-+void afegirClient()
-+void eliminarClient()
-+void afegirSerie()
-+void eliminarSerie()
++ void afegirClient()
++ void eliminarClient()
++ void afegirSerie()
++ void eliminarSerie()
 }
 
 class CompteBancari
