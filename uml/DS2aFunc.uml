@@ -1,14 +1,20 @@
 @startuml
 
-title Diagrama de seqüència Visualitzar Cataleg
--> Sistema : visualitzacioCataleg()
-Sistema -> DataManager : visualitzaCataleg()
+title Diagrama de seqÃ¼Ã¨ncia Visualitzar Cataleg
+-> TotSeries : visualitzacioCataleg()
+activate TotSeries
+TotSeries -> DataManager : visualitzaCataleg()
+activate DataManager
 DataManager -> DataManager : String dades=""
 loop per cada serie i al sistema
     DataManager -> Serie : serie.toString()
+    activate Serie
     Serie --> DataManager : dades+=serie
+    deactivate Serie
 end
 
-DataManager --> Sistema: retorna dades
-<-- Sistema : dades Cataleg
+DataManager --> TotSeries: retorna dades
+deactivate DataManager
+<-- TotSeries : dades Cataleg
+deactivate TotSeries
 @enduml
