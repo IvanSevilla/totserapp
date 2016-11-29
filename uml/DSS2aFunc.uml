@@ -1,9 +1,10 @@
 @startuml
 
-title Diagrama de seqüència de sistema Visualització del catàleg 
+title Diagrama de seqÃ¼Ã¨cia de sistema VisualitzaciÃ³del catÃ¡leg 
 Actor Client
-Client -> Sistema: visualitzacioCataleg()
+Client -> TotSeries: visualitzacioCataleg()
+activate TotSeries
 
-Client <-- Sistema: Dades cataleg
-
+Client <-- TotSeries: Dades cataleg
+deactivate TotSeries
 @enduml
