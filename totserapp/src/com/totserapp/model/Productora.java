@@ -16,8 +16,6 @@ public class Productora {
         return "Productora";
     }
     
-
-
     public String getNom() {
         return nom;
     }

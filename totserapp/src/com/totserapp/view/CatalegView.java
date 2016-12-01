@@ -9,7 +9,7 @@ public class CatalegView extends View{
     
     @Override
     public void show() {
-        Consola.escriu("TOT SERIES - Catàleg");
+        Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - Catàleg");
         imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
@@ -26,7 +26,7 @@ public class CatalegView extends View{
         result = controller.opcioSeleccionada(i);
         
         if(result.equals(Constants.ERROR_OPCIO_INCORRECTE)){
-            Consola.escriu("\nOpció incorrecte.");
+            Consola.escriu("\n" + result);
             show();
         }
         

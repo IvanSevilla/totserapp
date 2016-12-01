@@ -9,7 +9,7 @@ public class RegistreView extends View{
     
     @Override
     public void show() {
-        Consola.escriu("TOT SERIES - Registre");
+        Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - Registre");
         imprimirEstatUsuari();
         Consola.escriu("\n==========");
         

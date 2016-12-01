@@ -7,10 +7,10 @@ import java.util.Random;
 public class Episodi {
     private ArrayList<Valoracio> valoracions = new ArrayList<>();
     
-    private String title, idioma, description, data, duration, numTemporada;
+    private String title, idioma, description, data, duration, numTemporada, serie;
     int numEpisodi;
 
-    public Episodi(String title, String idioma, String description, String data, String duration, String numTemporada, int numEpisodi) {
+    public Episodi(String title, String idioma, String description, String data, String duration, String numTemporada, int numEpisodi, String serie) {
         this.title = title;
         this.idioma = idioma;
         this.description = description;
@@ -18,6 +18,7 @@ public class Episodi {
         this.duration = duration;
         this.numTemporada = numTemporada;
         this.numEpisodi = numEpisodi;
+        this.serie = serie;
         
         Random random = new Random();
         
@@ -93,5 +94,13 @@ public class Episodi {
     }
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
     }
 }

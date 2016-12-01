@@ -6,6 +6,7 @@ import com.totserapp.model.Serie;
 import com.totserapp.model.Usuari;
 import com.totserapp.util.Constants;
 import com.totserapp.view.CatalegView;
+import com.totserapp.view.EpisodiView;
 import com.totserapp.view.SerieView;
 import com.totserapp.view.View;
 
@@ -38,7 +39,8 @@ public class SerieController extends Controller{
             if(usuari != null){
                 Episodi episodi = getEpisodiAtPosition(serie, i);
                 seleccionat = episodi;
-                return visualitzarEpisodi(episodi);
+                TotSeries.getInstance().setView(new EpisodiView(episodi));
+                return Constants.OK;
             }else{
                 return Constants.ERROR_USUARI_NO_LOGUEJAT;
             }
@@ -74,7 +76,7 @@ public class SerieController extends Controller{
     }
     
     public String visualitzarEpisodi(Episodi episodi){
-        return "Visualitzant Episodi " + episodi.getTitle() + "...";
+        return "\nVisualitzant Episodi " + episodi.getTitle() + "...";
     }
     
     private Episodi getEpisodiAtPosition(Serie serie, int i){

@@ -5,6 +5,12 @@ import com.totserapp.util.TotSeriesDataManager;
 import com.totserapp.view.MainMenuView;
 import com.totserapp.view.View;
 
+/**
+ * Classe principal de l'aplicació. És un singleton. 
+ * Conté una instancia del DataManager, la vista que 
+ * s'està mostrant actualment i l'usuari loguejat.
+ * 
+ */
 public class TotSeries {
     private View view;
     private TotSeriesDataManager dataManager;
@@ -28,6 +34,7 @@ public class TotSeries {
     
     public void setView(View view){
         this.view = view;
+        // Mostrem la vista!
         this.view.show();
     }
     

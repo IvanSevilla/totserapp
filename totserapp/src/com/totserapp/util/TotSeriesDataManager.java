@@ -83,7 +83,7 @@ public class TotSeriesDataManager {
     }
     
     public void crearEpisodi(String idSerie, String numTemporada, int numEpisodi, String title, String duration, String idioma, String description, String data) {		
-        Episodi episodi = new Episodi(title, idioma, description, data, duration, numTemporada, numEpisodi);
+        Episodi episodi = new Episodi(title, idioma, description, data, duration, numTemporada, numEpisodi, series.get(idSerie).getTitol());
         series.get(idSerie).getEpisodis().add(episodi);
     }
 
@@ -158,6 +158,7 @@ public class TotSeriesDataManager {
         return series;
     }
     
+    
     public ArrayList<Episodi> getEpisodisMesValorats(){
         TotSeries totSeries = TotSeries.getInstance();
         ArrayList<Episodi> episodis = new ArrayList<>();
@@ -188,10 +189,10 @@ public class TotSeriesDataManager {
             }
         });
         
-        // Mostrar los 10 primeros
+        // Mostrar los 10 primeros. Eliminar el resto.
         
         if(episodis.size() > 10){
-            for(int e = episodis.size() - 1; e >=10; e--){
+            for(int e = episodis.size() - 1; e >= 10; e--){
                 episodis.remove(e);
             }
         }

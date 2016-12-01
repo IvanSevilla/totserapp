@@ -1,8 +1,6 @@
 package com.totserapp.view;
 
-import com.totserapp.TotSeries;
 import com.totserapp.controller.MainMenuController;
-import com.totserapp.model.Usuari;
 import com.totserapp.util.Consola;
 import com.totserapp.util.Constants;
 
@@ -11,15 +9,15 @@ public class MainMenuView extends View{
     
     @Override
     public void show() {
-        Consola.escriu("TOT SERIES");
+        Consola.escriu(Constants.MISSATGE_NOM_APLICACIO);
         imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
-        Consola.escriu("\n(1) - Alta nou client");
-        Consola.escriu("\n(2) - Visualitzar Catàleg");
-        Consola.escriu("\n(3) - Episodis més valorats");
+        Consola.escriu("\n" + Constants.MISSATGE_REGISTRE);
+        Consola.escriu("\n" + Constants.MISSATGE_CATALEG );
+        Consola.escriu("\n" + Constants.MISSATGE_RANKING);
         
-        Consola.escriu("\n\nIntrodueix un número (1-3): ");
+        Consola.escriu("\n\n" + Constants.MISSATGE_SELECCIO_MENU_PRINCIPAL);
         
         int i = Consola.llegeixInt();
         
