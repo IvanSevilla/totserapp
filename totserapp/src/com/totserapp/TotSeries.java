@@ -1,27 +1,56 @@
 package com.totserapp;
 
+import com.totserapp.model.Usuari;
 import com.totserapp.util.TotSeriesDataManager;
-import com.totserapp.view.TestView;
+import com.totserapp.view.MainMenuView;
 import com.totserapp.view.View;
 
-
+/**
+ * Classe principal de l'aplicació. És un singleton. 
+ * Conté una instancia del DataManager, la vista que 
+ * s'està mostrant actualment i l'usuari loguejat.
+ * 
+ */
 public class TotSeries {
-    private static View view;
-    private static TotSeriesDataManager dataManager;
+    private View view;
+    private TotSeriesDataManager dataManager;
+    private Usuari usuariActual;
     
-    public static void main(String[] args){
+    private static TotSeries instance = null;
+    
+    public TotSeries(){
         dataManager = new TotSeriesDataManager();
         dataManager.obtenirDades("data/TotSeries.xml");
-        
-        setView(new TestView());
     }
     
-    public static TotSeriesDataManager getDataManager(){
+    public static TotSeries getInstance(){
+        if(instance == null) instance = new TotSeries();
+        return instance;
+    }
+    
+    public static void main(String[] args){
+       getInstance().setView(new MainMenuView());
+    }
+    
+    public void setView(View view){
+        this.view = view;
+        // Mostrem la vista!
+        this.view.show();
+    }
+    
+    public TotSeriesDataManager getDataManager(){
         return dataManager;
     }
     
-    public static void setView(View view){
-        TotSeries.view = view;
-        TotSeries.view.show();
+    public View getView(){
+        return view;
+    }
+    
+    public Usuari getUsuariActual(){
+        return usuariActual;
+    }
+    
+    public void setUsuariActual(Usuari usuari){
+        this.usuariActual = usuari;
     }
 }
