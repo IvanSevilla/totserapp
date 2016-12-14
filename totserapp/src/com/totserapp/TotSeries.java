@@ -2,7 +2,9 @@ package com.totserapp;
 
 import com.totserapp.model.Usuari;
 import com.totserapp.util.TotSeriesDataManager;
+import com.totserapp.view.JFrameView;
 import com.totserapp.view.MainMenuView;
+import com.totserapp.view.TestJFrameView;
 import com.totserapp.view.View;
 
 /**
@@ -12,7 +14,7 @@ import com.totserapp.view.View;
  * 
  */
 public class TotSeries {
-    private View view;
+    private JFrameView view;
     private TotSeriesDataManager dataManager;
     private Usuari usuariActual;
     
@@ -29,20 +31,25 @@ public class TotSeries {
     }
     
     public static void main(String[] args){
-       getInstance().setView(new MainMenuView());
+       getInstance().showJFrameView(new TestJFrameView());
     }
     
     public void setView(View view){
-        this.view = view;
+        //this.view = view;
         // Mostrem la vista!
         this.view.show();
+    }
+    
+    public void showJFrameView(JFrameView view){
+        this.view = view;
+        this.view.mostrar();
     }
     
     public TotSeriesDataManager getDataManager(){
         return dataManager;
     }
     
-    public View getView(){
+    public JFrameView getView(){
         return view;
     }
     
