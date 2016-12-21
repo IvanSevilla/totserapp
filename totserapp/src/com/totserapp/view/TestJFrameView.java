@@ -9,6 +9,11 @@ public class TestJFrameView extends JFrameView {
      */
     public TestJFrameView() {
         initComponents();
+        this.text_nick.setVisible(false);
+        this.pass_field.setVisible(false);
+        this.cbox_temp.setVisible(false);
+        this.label_nick.setVisible(false);
+        this.label_pass.setVisible(false);
     }
 
     /**
@@ -20,43 +25,243 @@ public class TestJFrameView extends JFrameView {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btn_cancel_login = new javax.swing.JButton();
+        btn_accept_reg = new javax.swing.JButton();
+        label_nick = new javax.swing.JLabel();
+        text_nick = new javax.swing.JTextField();
+        pass_field = new javax.swing.JPasswordField();
+        label_pass = new javax.swing.JLabel();
+        panel_top_ten = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        label_top_ten = new javax.swing.JLabel();
+        panel_top_views = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        label_top_views = new javax.swing.JLabel();
+        panel_serie_episode = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        cbox_temp = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TotSeries");
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
-        jButton1.setText("NETFLIXXX");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancel_login.setText("Log-In");
+        btn_cancel_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_cancel_loginActionPerformed(evt);
             }
         });
+
+        btn_accept_reg.setText("Register");
+        btn_accept_reg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_accept_regActionPerformed(evt);
+            }
+        });
+
+        label_nick.setText("Nickname:");
+
+        label_pass.setText("Password:");
+
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList3);
+
+        label_top_ten.setText("TOP 10");
+
+        javax.swing.GroupLayout panel_top_tenLayout = new javax.swing.GroupLayout(panel_top_ten);
+        panel_top_ten.setLayout(panel_top_tenLayout);
+        panel_top_tenLayout.setHorizontalGroup(
+            panel_top_tenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_top_tenLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_top_tenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addGroup(panel_top_tenLayout.createSequentialGroup()
+                        .addComponent(label_top_ten)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panel_top_tenLayout.setVerticalGroup(
+            panel_top_tenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_top_tenLayout.createSequentialGroup()
+                .addComponent(label_top_ten)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
+
+        label_top_views.setText("TOP VIEWS");
+
+        javax.swing.GroupLayout panel_top_viewsLayout = new javax.swing.GroupLayout(panel_top_views);
+        panel_top_views.setLayout(panel_top_viewsLayout);
+        panel_top_viewsLayout.setHorizontalGroup(
+            panel_top_viewsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_top_viewsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_top_viewsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addGroup(panel_top_viewsLayout.createSequentialGroup()
+                        .addComponent(label_top_views)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panel_top_viewsLayout.setVerticalGroup(
+            panel_top_viewsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_top_viewsLayout.createSequentialGroup()
+                .addComponent(label_top_views)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbox_temp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_tempActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_serie_episodeLayout = new javax.swing.GroupLayout(panel_serie_episode);
+        panel_serie_episode.setLayout(panel_serie_episodeLayout);
+        panel_serie_episodeLayout.setHorizontalGroup(
+            panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_serie_episodeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(panel_serie_episodeLayout.createSequentialGroup()
+                        .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 134, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panel_serie_episodeLayout.setVerticalGroup(
+            panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_serie_episodeLayout.createSequentialGroup()
+                .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(0, 576, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel_serie_episode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panel_top_views, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panel_top_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_nick)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_pass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_accept_reg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancel_login)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(0, 379, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cancel_login)
+                    .addComponent(btn_accept_reg)
+                    .addComponent(label_nick)
+                    .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_pass))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(panel_top_ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel_top_views, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_serie_episode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cbox_tempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_tempActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbox_tempActionPerformed
+
+    private void btn_accept_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accept_regActionPerformed
         TotSeries.getInstance().showJFrameView(new Test2JFrameView());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_accept_regActionPerformed
+
+    private void btn_cancel_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_loginActionPerformed
+        if (this.btn_cancel_login.getText().equals("Log-In")){
+            this.btn_accept_reg.setText("Accept");
+            this.btn_cancel_login.setText("Cancel");
+            this.label_nick.setVisible(true);
+            this.label_pass.setVisible(true);
+            this.text_nick.setVisible(true);
+            this.pass_field.setVisible(true);
+        }
+        else{
+            //necesitamos una funcion para el login
+            this.btn_accept_reg.setText("Register");
+            this.btn_cancel_login.setText("Log-In");
+            this.label_nick.setVisible(false);
+            this.label_pass.setVisible(false);
+            this.text_nick.setVisible(false);
+            this.pass_field.setVisible(false);
+        }
+        
+        
+    }//GEN-LAST:event_btn_cancel_loginActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_accept_reg;
+    private javax.swing.JButton btn_cancel_login;
+    private javax.swing.JComboBox<String> cbox_temp;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel label_nick;
+    private javax.swing.JLabel label_pass;
+    private javax.swing.JLabel label_top_ten;
+    private javax.swing.JLabel label_top_views;
+    private javax.swing.JPanel panel_serie_episode;
+    private javax.swing.JPanel panel_top_ten;
+    private javax.swing.JPanel panel_top_views;
+    private javax.swing.JPasswordField pass_field;
+    private javax.swing.JTextField text_nick;
     // End of variables declaration//GEN-END:variables
 }
