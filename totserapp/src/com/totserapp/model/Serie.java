@@ -11,7 +11,7 @@ public class Serie {
 
     private String titol, descripcio;
     
-    private int valoració;
+    private int valoració, visualitzacions;
     
     public ArrayList<Episodi> getEpisodis() {
         return episodis;
@@ -63,6 +63,14 @@ public class Serie {
 
     public void setValoració(int valoració) {
         this.valoració = valoració;
+    }
+
+    public int getVisualitzacions() {
+        return visualitzacions;
+    }
+
+    public void setVisualitzacions(int visualitzacions) {
+        this.visualitzacions = visualitzacions;
     }
    
 }

@@ -20,6 +20,7 @@ public class MainController extends Controller{
     public void init(){
         mostrarSeries();
         mostrarRankingValoracions();
+        mostrarRankingVisualitzacions();
     }
     
     public void mostrarSeries(){
@@ -42,7 +43,12 @@ public class MainController extends Controller{
     
     public void mostrarRankingValoracions(){
         String[] rankingValoracions = getSeriesMesValorades(); 
-        ((MainView)getView()).setList3Episodis(rankingValoracions);
+        ((MainView)getView()).setRankingSeriesMesValorades(rankingValoracions);
+    }
+    
+    public void mostrarRankingVisualitzacions(){
+        String[] rankingVisualitzacions = getSeriesMesVistes(); 
+        ((MainView)getView()).setRankingSeriesMesVistes(rankingVisualitzacions);
     }
     
     public String[] getSeriesMesValorades(){
@@ -82,6 +88,46 @@ public class MainController extends Controller{
         for(int i = 0; i < 10 ; i++){
             Serie serie = s.get(i);
             out[i] = serie.getTitol() + " - " + serie.getValoració();
+        }
+        
+        return out;
+    }
+    
+    public String[] getSeriesMesVistes(){
+        String[] out = new String[10];
+        ArrayList<Serie> s = new ArrayList<>();
+        
+        // calcular valoracion media serie
+        for(Map.Entry<String, Serie> entry : TotSeries.getInstance().getDataManager().getSeries().entrySet()) {
+           Serie serie = entry.getValue();
+           int result = 0;
+           for(Episodi episodi : serie.getEpisodis()){
+               result += episodi.getVisualitzacions();
+           }
+
+           serie.setVisualitzacions(result);
+           s.add(serie);
+        }
+        
+        // ordenar por valoracion
+        
+        Collections.sort(s, new Comparator<Serie>() {
+            @Override
+            public int compare(Serie a, Serie b) {
+                if(a.getVisualitzacions()> b.getVisualitzacions()){
+                    return -1; 
+                }if(a.getVisualitzacions() < b.getVisualitzacions()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        });
+        
+        // obtener las 10 primeras y formatear
+        for(int i = 0; i < 10 ; i++){
+            Serie serie = s.get(i);
+            out[i] = serie.getTitol() + " - " + serie.getVisualitzacions();
         }
         
         return out;

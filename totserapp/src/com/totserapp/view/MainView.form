@@ -170,7 +170,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="label_top_ten">
           <Properties>
-            <Property name="text" type="java.lang.String" value="TOP 10"/>
+            <Property name="text" type="java.lang.String" value="+ VALORADES"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -231,7 +231,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="label_top_views">
           <Properties>
-            <Property name="text" type="java.lang.String" value="TOP VIEWS"/>
+            <Property name="text" type="java.lang.String" value="+ VISTES"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -241,28 +241,35 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="cbox_temp" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_back" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_top_views1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" min="-2" pref="219" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cbox_temp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btn_back" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane1" min="-2" pref="219" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cbox_temp" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_back" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbox_temp" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Component id="label_top_views1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="387" max="-2" attributes="0"/>
               </Group>
@@ -323,6 +330,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_top_views1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CATALEG"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

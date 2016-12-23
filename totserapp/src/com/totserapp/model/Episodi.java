@@ -28,6 +28,8 @@ public class Episodi {
             int valor = random.nextInt(6) + 1;
             valoracions.add(new Valoracio(valor, null));
         }
+        
+        visualitzacions = random.nextInt(10000) + 1000;
     }
     
     public String toShortString(){

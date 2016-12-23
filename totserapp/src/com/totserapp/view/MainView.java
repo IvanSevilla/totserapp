@@ -57,6 +57,7 @@ public class MainView extends View {
         list_1 = new javax.swing.JList<>();
         cbox_temp = new javax.swing.JComboBox<>();
         btn_back = new javax.swing.JButton();
+        label_top_views1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TotSeries");
@@ -89,7 +90,7 @@ public class MainView extends View {
         });
         jScrollPane3.setViewportView(list_3);
 
-        label_top_ten.setText("TOP 10");
+        label_top_ten.setText("+ VALORADES");
 
         javax.swing.GroupLayout panel_top_tenLayout = new javax.swing.GroupLayout(panel_top_ten);
         panel_top_ten.setLayout(panel_top_tenLayout);
@@ -119,7 +120,7 @@ public class MainView extends View {
         });
         jScrollPane2.setViewportView(list_2);
 
-        label_top_views.setText("TOP VIEWS");
+        label_top_views.setText("+ VISTES");
 
         javax.swing.GroupLayout panel_top_viewsLayout = new javax.swing.GroupLayout(panel_top_views);
         panel_top_views.setLayout(panel_top_viewsLayout);
@@ -168,6 +169,8 @@ public class MainView extends View {
             }
         });
 
+        label_top_views1.setText("CATALEG");
+
         javax.swing.GroupLayout panel_serie_episodeLayout = new javax.swing.GroupLayout(panel_serie_episode);
         panel_serie_episode.setLayout(panel_serie_episodeLayout);
         panel_serie_episodeLayout.setHorizontalGroup(
@@ -176,19 +179,24 @@ public class MainView extends View {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_serie_episodeLayout.createSequentialGroup()
-                        .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_back))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(label_top_views1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel_serie_episodeLayout.createSequentialGroup()
+                            .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_back))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         panel_serie_episodeLayout.setVerticalGroup(
             panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_serie_episodeLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
                 .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_back))
+                    .addComponent(btn_back)
+                    .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(label_top_views1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -304,6 +312,7 @@ public class MainView extends View {
     private javax.swing.JLabel label_pass;
     private javax.swing.JLabel label_top_ten;
     private javax.swing.JLabel label_top_views;
+    private javax.swing.JLabel label_top_views1;
     private javax.swing.JList<String> list_1;
     private javax.swing.JList<String> list_2;
     private javax.swing.JList<String> list_3;
@@ -342,7 +351,14 @@ public class MainView extends View {
         });
     }
     
-    public void setList3Episodis(final String[] list){
+    public void setRankingSeriesMesVistes(final String[] list){
+        list_2.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return list.length; }
+            public String getElementAt(int i) { return list[i]; }
+        });
+    }
+    
+    public void setRankingSeriesMesValorades(final String[] list){
         list_3.setModel(new javax.swing.AbstractListModel<String>() {
             public int getSize() { return list.length; }
             public String getElementAt(int i) { return list[i]; }
