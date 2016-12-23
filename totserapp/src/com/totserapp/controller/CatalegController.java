@@ -33,10 +33,10 @@ public class CatalegController extends Controller{
     public String opcioSeleccionada(int i){
         if(i >= 1 && i <= 10){
             Serie serie = getSerieAtPosition(i);
-            TotSeries.getInstance().setView(new SerieView(serie));
+            //TotSeries.getInstance().setView(new SerieView(serie));
             return Constants.OK;
         }else if(i == 0){
-            TotSeries.getInstance().setView(new MainMenuView());
+            //TotSeries.getInstance().setView(new MainMenuView());
             return Constants.OK;
         }
         return Constants.ERROR_OPCIO_INCORRECTE;

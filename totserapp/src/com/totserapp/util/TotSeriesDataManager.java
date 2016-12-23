@@ -199,5 +199,21 @@ public class TotSeriesDataManager {
         
         return episodis;
     }
+    
+    public String[] getSeriesMesValorades(){
+        String[] out = new String[10];
+        for(Map.Entry<String, Serie> entry : getSeries().entrySet()) {
+           Serie serie = entry.getValue();
+           int numEpisodis = serie.getEpisodis().size();
+           int valoracioAcum = 0;
+           for(Episodi episodi : serie.getEpisodis()){
+               valoracioAcum += episodi.getMitjanaValoracions();
+           }
+
+           int result = valoracioAcum / numEpisodis;
+        }
+        
+        return out;
+    }
 	
 }

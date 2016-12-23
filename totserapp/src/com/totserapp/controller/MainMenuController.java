@@ -16,13 +16,13 @@ public class MainMenuController extends Controller{
     public String opcioSeleccionada(int i){
         switch(i){
             case Constants.OPCIO_REGISTRE:
-                TotSeries.getInstance().setView(new RegistreView());
+                //TotSeries.getInstance().setView(new RegistreView());
                 return Constants.OK;
             case Constants.OPCIO_CATALEG:
-                TotSeries.getInstance().setView(new CatalegView());
+                //TotSeries.getInstance().setView(new CatalegView());
                 return Constants.OK;
             case Constants.OPCIO_RANKING:
-                TotSeries.getInstance().setView(new RankingView());
+                //TotSeries.getInstance().setView(new RankingView());
                 return Constants.OK;
         }
         return Constants.ERROR_OPCIO_INCORRECTE;

@@ -103,4 +103,10 @@ public class Episodi {
     public void setSerie(String serie) {
         this.serie = serie;
     }
+
+    public String getNumTemporada() {
+        return numTemporada;
+    }
+    
+    
 }

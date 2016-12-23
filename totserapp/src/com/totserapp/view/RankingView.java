@@ -10,7 +10,7 @@ public class RankingView extends View{
     @Override
     public void show() {
         Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - EPISODIS MES VALORATS");
-        imprimirEstatUsuari();
+        //imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
         String result = controller.visualitzarRanking();

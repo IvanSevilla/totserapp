@@ -39,13 +39,13 @@ public class SerieController extends Controller{
             if(usuari != null){
                 Episodi episodi = getEpisodiAtPosition(serie, i);
                 seleccionat = episodi;
-                TotSeries.getInstance().setView(new EpisodiView(episodi));
+                //TotSeries.getInstance().setView(new EpisodiView(episodi));
                 return Constants.OK;
             }else{
                 return Constants.ERROR_USUARI_NO_LOGUEJAT;
             }
         }else if(i == 0){
-            TotSeries.getInstance().setView(new CatalegView());
+            //TotSeries.getInstance().setView(new CatalegView());
             return Constants.OK;
         }
         

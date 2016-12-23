@@ -1,19 +1,32 @@
 package com.totserapp.view;
 
 import com.totserapp.TotSeries;
+import com.totserapp.controller.MainController;
+import com.totserapp.model.Episodi;
+import com.totserapp.model.Serie;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.text.StyledEditorKit;
 
-public class TestJFrameView extends JFrameView {
+public class MainView extends View {
+    MainController controller = new MainController(this);
+    
+    int indexSerie = -1;
 
     /**
      * Creates new form TestJFrameView
      */
-    public TestJFrameView() {
+    public MainView() {
         initComponents();
         this.text_nick.setVisible(false);
         this.pass_field.setVisible(false);
         this.cbox_temp.setVisible(false);
         this.label_nick.setVisible(false);
         this.label_pass.setVisible(false);
+        btn_back.setVisible(false);
+        controller.init();
     }
 
     /**
@@ -33,16 +46,17 @@ public class TestJFrameView extends JFrameView {
         label_pass = new javax.swing.JLabel();
         panel_top_ten = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        list_3 = new javax.swing.JList<>();
         label_top_ten = new javax.swing.JLabel();
         panel_top_views = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        list_2 = new javax.swing.JList<>();
         label_top_views = new javax.swing.JLabel();
         panel_serie_episode = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list_1 = new javax.swing.JList<>();
         cbox_temp = new javax.swing.JComboBox<>();
+        btn_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TotSeries");
@@ -68,12 +82,12 @@ public class TestJFrameView extends JFrameView {
 
         label_pass.setText("Password:");
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        list_3.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList3);
+        jScrollPane3.setViewportView(list_3);
 
         label_top_ten.setText("TOP 10");
 
@@ -98,12 +112,12 @@ public class TestJFrameView extends JFrameView {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        list_2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(list_2);
 
         label_top_views.setText("TOP VIEWS");
 
@@ -128,12 +142,17 @@ public class TestJFrameView extends JFrameView {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        list_1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        list_1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list_1);
 
         cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbox_temp.addActionListener(new java.awt.event.ActionListener() {
@@ -142,26 +161,36 @@ public class TestJFrameView extends JFrameView {
             }
         });
 
+        btn_back.setText("Atras");
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_serie_episodeLayout = new javax.swing.GroupLayout(panel_serie_episode);
         panel_serie_episode.setLayout(panel_serie_episodeLayout);
         panel_serie_episodeLayout.setHorizontalGroup(
             panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_serie_episodeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(panel_serie_episodeLayout.createSequentialGroup()
                         .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 134, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_back))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel_serie_episodeLayout.setVerticalGroup(
             panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_serie_episodeLayout.createSequentialGroup()
-                .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_back))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,19 +199,18 @@ public class TestJFrameView extends JFrameView {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel_serie_episode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(panel_top_views, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel_top_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(label_nick)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(143, 143, 143)
                         .addComponent(label_pass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +230,7 @@ public class TestJFrameView extends JFrameView {
                     .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_pass))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(panel_top_ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,11 +243,12 @@ public class TestJFrameView extends JFrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbox_tempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_tempActionPerformed
-        // TODO add your handling code here:
+        int selected = cbox_temp.getSelectedIndex();
+        controller.mostrarEpisodis(indexSerie, selected + 1);
     }//GEN-LAST:event_cbox_tempActionPerformed
 
     private void btn_accept_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accept_regActionPerformed
-        TotSeries.getInstance().showJFrameView(new Test2JFrameView());
+        TotSeries.getInstance().showView(new RegistreView());
     }//GEN-LAST:event_btn_accept_regActionPerformed
 
     private void btn_cancel_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_loginActionPerformed
@@ -244,13 +273,30 @@ public class TestJFrameView extends JFrameView {
         
     }//GEN-LAST:event_btn_cancel_loginActionPerformed
 
+    private void list_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_1MouseClicked
+        int selected = list_1.getSelectedIndex();
+        if(indexSerie == -1){
+            controller.mostrarEpisodis(selected, 1);
+            cbox_temp.setVisible(true);
+            btn_back.setVisible(true);
+            indexSerie = selected;
+        }else{
+            
+        }
+    }//GEN-LAST:event_list_1MouseClicked
+
+    private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
+        indexSerie = -1;
+        cbox_temp.setVisible(false);
+        btn_back.setVisible(false);
+        controller.mostrarSeries();
+    }//GEN-LAST:event_btn_backActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_accept_reg;
+    private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_cancel_login;
     private javax.swing.JComboBox<String> cbox_temp;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -258,10 +304,63 @@ public class TestJFrameView extends JFrameView {
     private javax.swing.JLabel label_pass;
     private javax.swing.JLabel label_top_ten;
     private javax.swing.JLabel label_top_views;
+    private javax.swing.JList<String> list_1;
+    private javax.swing.JList<String> list_2;
+    private javax.swing.JList<String> list_3;
     private javax.swing.JPanel panel_serie_episode;
     private javax.swing.JPanel panel_top_ten;
     private javax.swing.JPanel panel_top_views;
     private javax.swing.JPasswordField pass_field;
     private javax.swing.JTextField text_nick;
     // End of variables declaration//GEN-END:variables
+    
+    public void setList1Series(HashMap<String, Serie> list){
+        final int size = list.size();
+        final String[] strings = new String[size];
+        int i = 0;
+        for(Map.Entry<String, Serie> entry : list.entrySet()) {
+           Serie serie = entry.getValue();
+           strings[i] = serie.getTitol();
+           i++;
+        }
+        list_1.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return size; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+    }
+    
+    public void setList1Episodis(ArrayList<Episodi> list){
+        final int size = list.size();
+        final String[] strings = new String[size];
+        for(int i = 0; i < size; i++) {
+           Episodi episodi = list.get(i);
+           strings[i] = episodi.getTitle();
+        }
+        list_1.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return size; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+    }
+    
+    public void setList3Episodis(ArrayList<Episodi> list){
+        final int size = list.size();
+        final String[] strings = new String[size];
+        for(int i = 0; i < size; i++) {
+           Episodi episodi = list.get(i);
+           strings[i] = episodi.getTitle() + " - " + episodi.getMitjanaValoracions();
+        }
+        
+        list_3.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return size; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+    }
+    
+    public void setTemporades(int num){
+        final String[] strings = new String[num];
+        for(int i = 1; i <= num; i++) {
+           strings[i - 1] ="Temporada " + i;
+        }
+        cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(strings));
+    }
 }

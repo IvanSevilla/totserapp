@@ -10,7 +10,7 @@ public class CatalegView extends View{
     @Override
     public void show() {
         Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - Catàleg");
-        imprimirEstatUsuari();
+        //imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
         String result = controller.visualitzarCataleg();

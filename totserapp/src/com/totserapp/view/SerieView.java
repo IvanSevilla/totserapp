@@ -16,7 +16,7 @@ public class SerieView extends View{
     @Override
     public void show() {
         Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - " + serie.getTitol());
-        imprimirEstatUsuari();
+        //imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
         Consola.escriu("\n" + serie.toString());

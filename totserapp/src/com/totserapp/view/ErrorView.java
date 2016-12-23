@@ -6,13 +6,13 @@ import com.totserapp.controller.TestJFrameController;
  *
  * @author ivan
  */
-public class ErrorJFrameView extends JFrameView {
+public class ErrorView extends View {
      private TestJFrameController controller = new TestJFrameController(this);
     /**
      * Creates new form ErrorJFrameView
      * @param error
      */
-    public ErrorJFrameView(String error) {
+    public ErrorView(String error) {
         initComponents();
         this.error_label.setText(error);
     }

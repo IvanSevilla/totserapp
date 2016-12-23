@@ -1,6 +1,6 @@
 package com.totserapp.controller;
 
-import com.totserapp.view.JFrameView;
+import com.totserapp.view.View;
 
 /**
  * Classe controlador base que serà pare de tota la resta de controladors.
@@ -10,13 +10,13 @@ import com.totserapp.view.JFrameView;
  */
 
 public class JFrameController {
-    private JFrameView view;
+    private View view;
     
-    public JFrameController(JFrameView view){
+    public JFrameController(View view){
         this.view = view;
     }
     
-    public JFrameView getView(){
+    public View getView(){
         return view;
     }
 }

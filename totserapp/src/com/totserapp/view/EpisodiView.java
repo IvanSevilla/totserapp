@@ -17,7 +17,7 @@ public class EpisodiView extends View{
     @Override
     public void show() {
         Consola.escriu(Constants.MISSATGE_NOM_APLICACIO + " - " + episodi.toShortString());
-        imprimirEstatUsuari();
+        //imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
         String result = controller.visualitzarEpisodi(episodi);
@@ -44,7 +44,7 @@ public class EpisodiView extends View{
                  show();
             }else{
                 Consola.escriu("\n" + result);
-                TotSeries.getInstance().setView(new CatalegView());
+                //TotSeries.getInstance().setView(new CatalegView());
             }
         }
     }

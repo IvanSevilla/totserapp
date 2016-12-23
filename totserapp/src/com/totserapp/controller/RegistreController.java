@@ -26,6 +26,6 @@ public class RegistreController extends Controller{
     }
     
     public void mostrarMenuPrincipal(){
-        TotSeries.getInstance().setView(new MainMenuView());
+        //TotSeries.getInstance().setView(new MainMenuView());
     }
 }

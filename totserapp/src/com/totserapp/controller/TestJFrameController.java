@@ -5,8 +5,8 @@
  */
 package com.totserapp.controller;
 
-import com.totserapp.view.JFrameView;
-import com.totserapp.view.Test2JFrameView;
+import com.totserapp.view.View;
+import com.totserapp.view.RegistreView;
 
 /**
  *
@@ -15,13 +15,13 @@ import com.totserapp.view.Test2JFrameView;
 public class TestJFrameController extends JFrameController{
     int contador = 0;
     
-    public TestJFrameController(JFrameView view) {
+    public TestJFrameController(View view) {
         super(view);
     }
     
     public void sumarContador(){
        contador++;
-       ((Test2JFrameView)getView()).setCount(contador);
+       //((RegistreView)getView()).setCount(contador);
     }
     
 }

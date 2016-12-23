@@ -10,7 +10,7 @@ public class MainMenuView extends View{
     @Override
     public void show() {
         Consola.escriu(Constants.MISSATGE_NOM_APLICACIO);
-        imprimirEstatUsuari();
+        //imprimirEstatUsuari();
         Consola.escriu("\n==========");
         
         Consola.escriu("\n" + Constants.MISSATGE_REGISTRE);

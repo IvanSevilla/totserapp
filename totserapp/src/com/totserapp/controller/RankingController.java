@@ -36,12 +36,12 @@ public class RankingController extends Controller{
     
     public String seleccionarOpcio(int i){
         if(i == 0){
-            TotSeries.getInstance().setView(new MainMenuView());
+            //TotSeries.getInstance().setView(new MainMenuView());
             return Constants.OK;
         }else if(i >= 1 && i <= episodis.size()){
             Usuari usuari = TotSeries.getInstance().getUsuariActual();
             if(usuari != null){
-                TotSeries.getInstance().setView(new EpisodiView(episodis.get(i)));
+                //TotSeries.getInstance().setView(new EpisodiView(episodis.get(i)));
                 return Constants.OK;
             }else{
                 return Constants.ERROR_USUARI_NO_LOGUEJAT;
