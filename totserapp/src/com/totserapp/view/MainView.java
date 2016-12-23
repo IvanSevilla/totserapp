@@ -342,17 +342,10 @@ public class MainView extends View {
         });
     }
     
-    public void setList3Episodis(ArrayList<Episodi> list){
-        final int size = list.size();
-        final String[] strings = new String[size];
-        for(int i = 0; i < size; i++) {
-           Episodi episodi = list.get(i);
-           strings[i] = episodi.getTitle() + " - " + episodi.getMitjanaValoracions();
-        }
-        
+    public void setList3Episodis(final String[] list){
         list_3.setModel(new javax.swing.AbstractListModel<String>() {
-            public int getSize() { return size; }
-            public String getElementAt(int i) { return strings[i]; }
+            public int getSize() { return list.length; }
+            public String getElementAt(int i) { return list[i]; }
         });
     }
     

@@ -6,6 +6,8 @@ import com.totserapp.model.Serie;
 import com.totserapp.view.MainView;
 import com.totserapp.view.View;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +41,49 @@ public class MainController extends Controller{
     }
     
     public void mostrarRankingValoracions(){
-        ArrayList<Episodi> episodis = TotSeries.getInstance().getDataManager().getEpisodisMesValorats();
-        ((MainView)getView()).setList3Episodis(episodis);
+        String[] rankingValoracions = getSeriesMesValorades(); 
+        ((MainView)getView()).setList3Episodis(rankingValoracions);
+    }
+    
+    public String[] getSeriesMesValorades(){
+        String[] out = new String[10];
+        ArrayList<Serie> s = new ArrayList<>();
+        
+        // calcular valoracion media serie
+        for(Map.Entry<String, Serie> entry : TotSeries.getInstance().getDataManager().getSeries().entrySet()) {
+           Serie serie = entry.getValue();
+           int numEpisodis = serie.getEpisodis().size();
+           int valoracioAcum = 0;
+           for(Episodi episodi : serie.getEpisodis()){
+               valoracioAcum += episodi.getMitjanaValoracions();
+           }
+
+           int result = valoracioAcum / numEpisodis;
+           serie.setValoració(result);
+           s.add(serie);
+        }
+        
+        // ordenar por valoracion
+        
+        Collections.sort(s, new Comparator<Serie>() {
+            @Override
+            public int compare(Serie a, Serie b) {
+                if(a.getValoració() > b.getValoració()){
+                    return -1; 
+                }if(a.getValoració() < b.getValoració()){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            }
+        });
+        
+        // obtener las 10 primeras y formatear
+        for(int i = 0; i < 10 ; i++){
+            Serie serie = s.get(i);
+            out[i] = serie.getTitol() + " - " + serie.getValoració();
+        }
+        
+        return out;
     }
 }

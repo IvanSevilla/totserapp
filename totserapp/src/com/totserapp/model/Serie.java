@@ -11,6 +11,8 @@ public class Serie {
 
     private String titol, descripcio;
     
+    private int valoració;
+    
     public ArrayList<Episodi> getEpisodis() {
         return episodis;
     }
@@ -53,6 +55,14 @@ public class Serie {
     
     public Productora getProductora(){
         return productora;
+    }
+
+    public int getValoració() {
+        return valoració;
+    }
+
+    public void setValoració(int valoració) {
+        this.valoració = valoració;
     }
    
 }

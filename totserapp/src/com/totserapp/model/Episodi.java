@@ -8,7 +8,7 @@ public class Episodi {
     private ArrayList<Valoracio> valoracions = new ArrayList<>();
     
     private String title, idioma, description, data, duration, numTemporada, serie;
-    int numEpisodi;
+    int numEpisodi, visualitzacions;
 
     public Episodi(String title, String idioma, String description, String data, String duration, String numTemporada, int numEpisodi, String serie) {
         this.title = title;
@@ -106,6 +106,18 @@ public class Episodi {
 
     public String getNumTemporada() {
         return numTemporada;
+    }
+
+    public int getVisualitzacions() {
+        return visualitzacions;
+    }
+
+    public void setVisualitzacions(int visualitzacions) {
+        this.visualitzacions = visualitzacions;
+    }
+    
+    public void addVisualitzacions() {
+        visualitzacions += 1;
     }
     
     
