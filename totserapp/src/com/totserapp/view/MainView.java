@@ -5,14 +5,13 @@ import com.totserapp.controller.MainController;
 import com.totserapp.model.Episodi;
 import com.totserapp.model.Serie;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.text.StyledEditorKit;
+import javax.swing.Timer;
 
 public class MainView extends View {
     MainController controller = new MainController(this);
-    
+     Timer t = null; 
     int indexSerie = -1;
 
     /**
@@ -253,6 +252,7 @@ public class MainView extends View {
     private void cbox_tempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_tempActionPerformed
         int selected = cbox_temp.getSelectedIndex();
         controller.mostrarEpisodis(indexSerie, selected + 1);
+        this.cbox_temp.setSelectedIndex(selected);
     }//GEN-LAST:event_cbox_tempActionPerformed
 
     private void btn_accept_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accept_regActionPerformed
@@ -283,6 +283,9 @@ public class MainView extends View {
 
     private void list_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_1MouseClicked
         int selected = list_1.getSelectedIndex();
+        if (evt.getClickCount() == 2) {
+            TotSeries.getInstance().showView(new EpisodeView(this.list_1.getSelectedValue(),selected));
+        }
         if(indexSerie == -1){
             controller.mostrarEpisodis(selected, 1);
             cbox_temp.setVisible(true);
@@ -372,4 +375,6 @@ public class MainView extends View {
         }
         cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(strings));
     }
+
+    
 }
