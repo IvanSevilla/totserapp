@@ -2,8 +2,6 @@ package com.totserapp;
 
 import com.totserapp.model.Usuari;
 import com.totserapp.util.TotSeriesDataManager;
-import com.totserapp.view.View;
-import com.totserapp.view.MainMenuView;
 import com.totserapp.view.MainView;
 import com.totserapp.view.View;
 

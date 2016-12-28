@@ -4,26 +4,27 @@ import com.totserapp.TotSeries;
 import com.totserapp.controller.MainController;
 import com.totserapp.model.Episodi;
 import com.totserapp.model.Serie;
+import com.totserapp.model.Usuari;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.Timer;
 
 public class MainView extends View {
-    MainController controller = new MainController(this);
-     Timer t = null; 
-    int indexSerie = -1;
+    private MainController controller = new MainController(this);
+    private int indexSerie = -1;
+    private int indexTemporada = 1;
 
     /**
      * Creates new form TestJFrameView
      */
     public MainView() {
         initComponents();
-        this.text_nick.setVisible(false);
-        this.pass_field.setVisible(false);
-        this.cbox_temp.setVisible(false);
-        this.label_nick.setVisible(false);
-        this.label_pass.setVisible(false);
+        txt_nickname.setVisible(false);
+        txt_password.setVisible(false);
+        cbox_temp.setVisible(false);
+        label_nick.setVisible(false);
+        label_pass.setVisible(false);
+        txt_state.setVisible(false);
         btn_back.setVisible(false);
         controller.init();
     }
@@ -40,8 +41,8 @@ public class MainView extends View {
         btn_cancel_login = new javax.swing.JButton();
         btn_accept_reg = new javax.swing.JButton();
         label_nick = new javax.swing.JLabel();
-        text_nick = new javax.swing.JTextField();
-        pass_field = new javax.swing.JPasswordField();
+        txt_nickname = new javax.swing.JTextField();
+        txt_password = new javax.swing.JPasswordField();
         label_pass = new javax.swing.JLabel();
         panel_top_ten = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -57,6 +58,7 @@ public class MainView extends View {
         cbox_temp = new javax.swing.JComboBox<>();
         btn_back = new javax.swing.JButton();
         label_top_views1 = new javax.swing.JLabel();
+        txt_state = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TotSeries");
@@ -64,23 +66,23 @@ public class MainView extends View {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        btn_cancel_login.setText("Log-In");
+        btn_cancel_login.setText("Entrar");
         btn_cancel_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancel_loginActionPerformed(evt);
             }
         });
 
-        btn_accept_reg.setText("Register");
+        btn_accept_reg.setText("Registrar");
         btn_accept_reg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_accept_regActionPerformed(evt);
             }
         });
 
-        label_nick.setText("Nickname:");
+        label_nick.setText("Nom d'usuari:");
 
-        label_pass.setText("Password:");
+        label_pass.setText("Contrasenya:");
 
         list_3.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -161,7 +163,7 @@ public class MainView extends View {
             }
         });
 
-        btn_back.setText("Atras");
+        btn_back.setText("Tornar");
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_backActionPerformed(evt);
@@ -178,14 +180,14 @@ public class MainView extends View {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_serie_episodeLayout.createSequentialGroup()
-                        .addComponent(label_top_views1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel_serie_episodeLayout.createSequentialGroup()
-                            .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_back))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_back))
+                    .addGroup(panel_serie_episodeLayout.createSequentialGroup()
+                        .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_top_views1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panel_serie_episodeLayout.setVerticalGroup(
             panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,6 +202,8 @@ public class MainView extends View {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        txt_state.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,17 +214,20 @@ public class MainView extends View {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel_serie_episode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(panel_top_views, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel_top_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(panel_top_views, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(panel_top_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_state, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label_nick)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143)
+                        .addComponent(txt_nickname, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(label_pass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_accept_reg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,14 +241,17 @@ public class MainView extends View {
                     .addComponent(btn_cancel_login)
                     .addComponent(btn_accept_reg)
                     .addComponent(label_nick)
-                    .addComponent(text_nick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_pass))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(panel_top_ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panel_top_views, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txt_state)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(panel_top_ten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_top_views, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(panel_serie_episode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -252,30 +262,46 @@ public class MainView extends View {
     private void cbox_tempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_tempActionPerformed
         int selected = cbox_temp.getSelectedIndex();
         controller.mostrarEpisodis(indexSerie, selected + 1);
+        indexTemporada = selected + 1;
         this.cbox_temp.setSelectedIndex(selected);
     }//GEN-LAST:event_cbox_tempActionPerformed
 
     private void btn_accept_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accept_regActionPerformed
-        TotSeries.getInstance().showView(new RegistreView());
+        if(this.btn_accept_reg.getText().equals("Acceptar")){
+            String nick = txt_nickname.getText();
+            String pass = txt_password.getText();
+            controller.login(nick, pass);
+        }else{
+            TotSeries.getInstance().showView(new RegistreView(this));
+        }
     }//GEN-LAST:event_btn_accept_regActionPerformed
 
     private void btn_cancel_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_loginActionPerformed
-        if (this.btn_cancel_login.getText().equals("Log-In")){
-            this.btn_accept_reg.setText("Accept");
-            this.btn_cancel_login.setText("Cancel");
-            this.label_nick.setVisible(true);
-            this.label_pass.setVisible(true);
-            this.text_nick.setVisible(true);
-            this.pass_field.setVisible(true);
-        }
-        else{
-            //necesitamos una funcion para el login
-            this.btn_accept_reg.setText("Register");
-            this.btn_cancel_login.setText("Log-In");
-            this.label_nick.setVisible(false);
-            this.label_pass.setVisible(false);
-            this.text_nick.setVisible(false);
-            this.pass_field.setVisible(false);
+        if(btn_cancel_login.getText().equals("Entrar")){
+            btn_accept_reg.setText("Acceptar");
+            btn_cancel_login.setText("Cancelar");
+            label_nick.setVisible(true);
+            label_pass.setVisible(true);
+            txt_nickname.setVisible(true);
+            txt_password.setVisible(true);
+        }else if (btn_cancel_login.getText().equals("Sortir")){
+            txt_state.setVisible(false);
+            btn_accept_reg.setText("Registrar");
+            btn_cancel_login.setText("Entrar");
+            btn_accept_reg.setVisible(true);
+            btn_cancel_login.setVisible(true);
+            label_nick.setVisible(false);
+            label_pass.setVisible(false);
+            txt_nickname.setVisible(false);
+            txt_password.setVisible(false);
+            controller.sortir();
+        }else{
+            btn_accept_reg.setText("Registrar");
+            btn_cancel_login.setText("Entrar");
+            label_nick.setVisible(false);
+            label_pass.setVisible(false);
+            txt_nickname.setVisible(false);
+            txt_password.setVisible(false);
         }
         
         
@@ -284,16 +310,16 @@ public class MainView extends View {
     private void list_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_1MouseClicked
         int selected = list_1.getSelectedIndex();
         if (evt.getClickCount() == 2) {
-            TotSeries.getInstance().showView(new EpisodeView(this.list_1.getSelectedValue(),selected));
+            if(indexSerie == -1){
+                controller.mostrarEpisodis(selected, 1);
+                cbox_temp.setVisible(true);
+                btn_back.setVisible(true);
+                indexSerie = selected;
+            }else{
+               controller.visualitzarEpisodi(indexSerie, indexTemporada, selected);
+            }
         }
-        if(indexSerie == -1){
-            controller.mostrarEpisodis(selected, 1);
-            cbox_temp.setVisible(true);
-            btn_back.setVisible(true);
-            indexSerie = selected;
-        }else{
-            
-        }
+
     }//GEN-LAST:event_list_1MouseClicked
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
@@ -322,8 +348,9 @@ public class MainView extends View {
     private javax.swing.JPanel panel_serie_episode;
     private javax.swing.JPanel panel_top_ten;
     private javax.swing.JPanel panel_top_views;
-    private javax.swing.JPasswordField pass_field;
-    private javax.swing.JTextField text_nick;
+    private javax.swing.JTextField txt_nickname;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JLabel txt_state;
     // End of variables declaration//GEN-END:variables
     
     public void setList1Series(HashMap<String, Serie> list){
@@ -374,6 +401,18 @@ public class MainView extends View {
            strings[i - 1] ="Temporada " + i;
         }
         cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(strings));
+    }
+    
+    public void mostrarUsuariLoguejat(Usuari usuari){
+        label_nick.setVisible(false);
+        label_pass.setVisible(false);
+        txt_nickname.setVisible(false);
+        txt_password.setVisible(false);
+        btn_accept_reg.setVisible(false);
+        btn_cancel_login.setVisible(true);
+        btn_cancel_login.setText("Sortir");
+        txt_state.setVisible(true);
+        txt_state.setText("Loguejat com: " + usuari.getNick());
     }
 
     

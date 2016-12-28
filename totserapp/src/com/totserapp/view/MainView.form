@@ -37,18 +37,23 @@
                   <Group type="102" attributes="0">
                       <Component id="panel_serie_episode" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="panel_top_views" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="panel_top_ten" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="panel_top_views" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="panel_top_ten" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txt_state" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="label_nick" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="text_nick" min="-2" pref="96" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                      <Component id="txt_nickname" min="-2" pref="96" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="label_pass" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pass_field" min="-2" pref="104" max="-2" attributes="0"/>
+                      <Component id="txt_password" min="-2" pref="104" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_accept_reg" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -66,15 +71,19 @@
                   <Component id="btn_cancel_login" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_accept_reg" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="label_nick" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="text_nick" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pass_field" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_nickname" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_password" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="label_pass" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="panel_top_ten" max="32767" attributes="0"/>
-                      <Component id="panel_top_views" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="txt_state" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="panel_top_ten" max="32767" attributes="0"/>
+                          <Component id="panel_top_views" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Component id="panel_serie_episode" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -86,7 +95,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btn_cancel_login">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Log-In"/>
+        <Property name="text" type="java.lang.String" value="Entrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancel_loginActionPerformed"/>
@@ -94,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_accept_reg">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Register"/>
+        <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_accept_regActionPerformed"/>
@@ -102,16 +111,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="label_nick">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nickname:"/>
+        <Property name="text" type="java.lang.String" value="Nom d&apos;usuari:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="text_nick">
+    <Component class="javax.swing.JTextField" name="txt_nickname">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="pass_field">
+    <Component class="javax.swing.JPasswordField" name="txt_password">
     </Component>
     <Component class="javax.swing.JLabel" name="label_pass">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Password:"/>
+        <Property name="text" type="java.lang.String" value="Contrasenya:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="panel_top_ten">
@@ -325,7 +334,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_back">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Atras"/>
+            <Property name="text" type="java.lang.String" value="Tornar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_backActionPerformed"/>
@@ -338,5 +347,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="txt_state">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
