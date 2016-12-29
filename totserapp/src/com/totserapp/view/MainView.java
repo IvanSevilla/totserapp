@@ -283,6 +283,8 @@ public class MainView extends View {
             String nick = txt_nickname.getText();
             String pass = txt_password.getText();
             controller.login(nick, pass);
+            txt_nickname.setText("");
+            txt_password.setText("");
         }else{
             TotSeries.getInstance().showView(new RegistreView(this));
         }
