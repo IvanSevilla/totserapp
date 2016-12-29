@@ -1,31 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.totserapp.view;
 
-/**
- *
- * @author Ivan_
- */
-public class ValoracioView extends View {
-    private int sel;
+import com.totserapp.controller.ValoracioController;
+import com.totserapp.model.Episodi;
+
+public class ValoracioEpisodiView extends View {
+    private ValoracioController controller = new ValoracioController(this);
+    private Episodi episodi;
+    private MainView parentView;
     /**
      * Creates new form ValoracioView
+     * @param episodi
      */
-    public ValoracioView(String episodi, int selected){
+    public ValoracioEpisodiView(MainView parentView, Episodi episodi){
+        this.parentView = parentView;
+        this.episodi = episodi;
         initComponents();
-        this.sel=selected;
-        this.setTitle(episodi);
-        this.radbtn_1.setVisible(false);
-        this.radbtn_2.setVisible(false);
-        this.radbtn_3.setVisible(false);
-        this.radbtn_4.setVisible(false);
-        this.radbtn_5.setVisible(false);
+        setTitle(episodi.getTitle());
+        radbtn_1.setVisible(false);
+        radbtn_2.setVisible(false);
+        radbtn_3.setVisible(false);
+        radbtn_4.setVisible(false);
+        radbtn_5.setVisible(false);
     }
 
-    private ValoracioView() {
+    private ValoracioEpisodiView() {
         initComponents();
     }
 
@@ -130,28 +128,44 @@ public class ValoracioView extends View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_no_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_no_cancelActionPerformed
-        this.dispose();
-        
+        dispose();
     }//GEN-LAST:event_btn_no_cancelActionPerformed
 
     private void btn_yes_acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_yes_acceptActionPerformed
-        this.setTitle("Valoració");
-        if(this.btn_yes_accept.getText().equals("Si")){
-            this.radbtn_1.setVisible(true);
-            this.radbtn_2.setVisible(true);
-            this.radbtn_3.setVisible(true);
-            this.radbtn_4.setVisible(true);
-            this.radbtn_5.setVisible(true);
-            this.btn_yes_accept.setText("Aceptar");
-            this.btn_no_cancel.setText("Cancelar");
+        setTitle("Valoració");
+        if(btn_yes_accept.getText().equals("Si")){
+            radbtn_1.setVisible(true);
+            radbtn_2.setVisible(true);
+            radbtn_3.setVisible(true);
+            radbtn_4.setVisible(true);
+            radbtn_5.setVisible(true);
+            btn_yes_accept.setText("Acceptar");
+            btn_no_cancel.setText("Cancelar");
         }
         else{
             //guarda la valoracion de el episodio
             //this.btn_group.getSelection().getSelectedObjects();
-            this.dispose();
+            int valoracio = 0;
+            if(radbtn_1.isSelected()){
+                valoracio = 1;
+            }else if(radbtn_2.isSelected()){
+                valoracio = 2;
+            }else if(radbtn_3.isSelected()){
+                valoracio = 3;
+            }else if(radbtn_4.isSelected()){
+                valoracio = 4;
+            }else if(radbtn_5.isSelected()){
+                valoracio = 5;
+            }
+            controller.valorarEpisodi(episodi, valoracio);
         }
+        
     }//GEN-LAST:event_btn_yes_acceptActionPerformed
-
+    
+    public MainView getParentView(){
+        return parentView;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btn_group;
     private javax.swing.JButton btn_no_cancel;

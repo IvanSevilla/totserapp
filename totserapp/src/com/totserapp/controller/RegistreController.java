@@ -21,7 +21,7 @@ public class RegistreController extends Controller{
     public void registrar(MainView mainView, String nom, String nick, String password, String adreca, String dni){
         TotSeries totSeries = TotSeries.getInstance();
         boolean jaCreat = totSeries.getDataManager().getUsuaris().containsKey(nick);
-        boolean error = jaCreat || nom.isEmpty() || nick.isEmpty() || password.isEmpty() || adreca.isEmpty() || dni.isEmpty();
+        boolean error = jaCreat || nick.isEmpty() || password.isEmpty();
         if(error){
             TotSeries.getInstance().showView(new ErrorView(Constants.ERROR_REGISTRE_INCORRECTE));
         }else{

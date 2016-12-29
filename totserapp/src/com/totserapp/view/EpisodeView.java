@@ -6,6 +6,7 @@
 package com.totserapp.view;
 
 import com.totserapp.TotSeries;
+import com.totserapp.controller.EpisodeController;
 import com.totserapp.model.Episodi;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,10 +15,13 @@ import java.util.Date;
 import javax.swing.Timer;
 
 public class EpisodeView extends View{
+    private EpisodeController controller = new EpisodeController(this);
     private Timer timer = null; 
     private int selected;
+    private MainView parentView;
     
-     public EpisodeView(Episodi episodi) {
+     public EpisodeView(MainView parentView, final Episodi episodi) {
+         this.parentView = parentView;
         initComponents();
         setTitle(episodi.getTitle());
         txt_descripcio.setText(episodi.getDescription());
@@ -34,8 +38,7 @@ public class EpisodeView extends View{
                 if (val >= 100) {
                     timer.stop();
                     EpisodeView.this.dispose(); 
-                    // TODO: añadir uno a visualizacion
-                    TotSeries.getInstance().showView(new ValoracioView(getTitle(), selected));
+                    controller.visualitzar(episodi);
                     return;
                 }
                 progress_episodi.setValue(++val);
@@ -46,6 +49,10 @@ public class EpisodeView extends View{
      
     private EpisodeView() {
         initComponents();
+    }
+    
+    public MainView getParentView(){
+        return parentView;
     }
 
     /**

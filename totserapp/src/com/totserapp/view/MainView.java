@@ -2,6 +2,7 @@ package com.totserapp.view;
 
 import com.totserapp.TotSeries;
 import com.totserapp.controller.MainController;
+import com.totserapp.model.Admin;
 import com.totserapp.model.Episodi;
 import com.totserapp.model.Serie;
 import com.totserapp.model.Usuari;
@@ -89,8 +90,15 @@ public class MainView extends View {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        list_3.setEnabled(false);
+        list_3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_3MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(list_3);
 
+        label_top_ten.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label_top_ten.setText("+ VALORADES");
 
         javax.swing.GroupLayout panel_top_tenLayout = new javax.swing.GroupLayout(panel_top_ten);
@@ -119,8 +127,10 @@ public class MainView extends View {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        list_2.setEnabled(false);
         jScrollPane2.setViewportView(list_2);
 
+        label_top_views.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label_top_views.setText("+ VISTES");
 
         javax.swing.GroupLayout panel_top_viewsLayout = new javax.swing.GroupLayout(panel_top_views);
@@ -170,6 +180,7 @@ public class MainView extends View {
             }
         });
 
+        label_top_views1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         label_top_views1.setText("CATALEG");
 
         javax.swing.GroupLayout panel_serie_episodeLayout = new javax.swing.GroupLayout(panel_serie_episode);
@@ -192,16 +203,17 @@ public class MainView extends View {
         panel_serie_episodeLayout.setVerticalGroup(
             panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_serie_episodeLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(panel_serie_episodeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_back)
-                    .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(cbox_temp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_back))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_top_views1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        txt_state.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txt_state.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,13 +225,13 @@ public class MainView extends View {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel_serie_episode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(panel_top_views, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(panel_top_ten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_state, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(txt_state, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label_nick)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -294,6 +306,8 @@ public class MainView extends View {
             label_pass.setVisible(false);
             txt_nickname.setVisible(false);
             txt_password.setVisible(false);
+            list_3.clearSelection();
+            list_3.setEnabled(false);
             controller.sortir();
         }else{
             btn_accept_reg.setText("Registrar");
@@ -303,8 +317,6 @@ public class MainView extends View {
             txt_nickname.setVisible(false);
             txt_password.setVisible(false);
         }
-        
-        
     }//GEN-LAST:event_btn_cancel_loginActionPerformed
 
     private void list_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_1MouseClicked
@@ -319,7 +331,6 @@ public class MainView extends View {
                controller.visualitzarEpisodi(indexSerie, indexTemporada, selected);
             }
         }
-
     }//GEN-LAST:event_list_1MouseClicked
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
@@ -328,6 +339,13 @@ public class MainView extends View {
         btn_back.setVisible(false);
         controller.mostrarSeries();
     }//GEN-LAST:event_btn_backActionPerformed
+
+    private void list_3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_3MouseClicked
+        int selected = list_3.getSelectedIndex();
+        if (evt.getClickCount() == 2) {
+            controller.valorarSerieAdmin(selected);
+        }
+    }//GEN-LAST:event_list_3MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_accept_reg;
@@ -403,6 +421,10 @@ public class MainView extends View {
         cbox_temp.setModel(new javax.swing.DefaultComboBoxModel<>(strings));
     }
     
+    public MainController getController(){
+        return controller;
+    }
+    
     public void mostrarUsuariLoguejat(Usuari usuari){
         label_nick.setVisible(false);
         label_pass.setVisible(false);
@@ -412,7 +434,11 @@ public class MainView extends View {
         btn_cancel_login.setVisible(true);
         btn_cancel_login.setText("Sortir");
         txt_state.setVisible(true);
-        txt_state.setText("Loguejat com: " + usuari.getNick());
+        if(usuari instanceof Admin){
+            list_3.setEnabled(true);
+        }
+        String userType = usuari instanceof Admin ? "administrador" : "normal";
+        txt_state.setText("Loguejat com usuari " + userType + ": " + usuari.getNick());
     }
 
     

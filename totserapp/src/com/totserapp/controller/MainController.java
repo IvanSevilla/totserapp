@@ -1,13 +1,16 @@
 package com.totserapp.controller;
 
 import com.totserapp.TotSeries;
+import com.totserapp.model.Admin;
 import com.totserapp.model.Episodi;
 import com.totserapp.model.Serie;
 import com.totserapp.model.Usuari;
+import com.totserapp.model.Valoracio;
 import com.totserapp.util.Constants;
 import com.totserapp.view.EpisodeView;
 import com.totserapp.view.ErrorView;
 import com.totserapp.view.MainView;
+import com.totserapp.view.ValoracioSerieAdminView;
 import com.totserapp.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainController extends Controller{
+    
+    private Serie[] series;
     
     public MainController(View view) {
         super(view);
@@ -61,16 +66,23 @@ public class MainController extends Controller{
         
         // calcular valoracion media serie
         for(Map.Entry<String, Serie> entry : TotSeries.getInstance().getDataManager().getSeries().entrySet()) {
-           Serie serie = entry.getValue();
-           int numEpisodis = serie.getEpisodis().size();
-           int valoracioAcum = 0;
-           for(Episodi episodi : serie.getEpisodis()){
-               valoracioAcum += episodi.getMitjanaValoracions();
-           }
+            Serie serie = entry.getValue();
+            int numEpisodis = serie.getEpisodis().size();
+            int valoracioAcum = 0;
+            for(Episodi episodi : serie.getEpisodis()){
+                valoracioAcum += episodi.getMitjanaValoracions();
+            }
 
-           int result = valoracioAcum / numEpisodis;
-           serie.setValoració(result);
-           s.add(serie);
+            float result = valoracioAcum / numEpisodis;
+           
+            for(Valoracio v : serie.getValoracions()){
+                result += v.getValor();
+            }
+            
+            result /= serie.getValoracions().size() + 1;
+           
+            serie.setValoració(result);
+            s.add(serie);
         }
         
         // ordenar por valoracion
@@ -88,10 +100,13 @@ public class MainController extends Controller{
             }
         });
         
+        series = new Serie[10];
+        
         // obtener las 10 primeras y formatear
         for(int i = 0; i < 10 ; i++){
             Serie serie = s.get(i);
-            out[i] = serie.getTitol() + " - " + serie.getValoració();
+            series[i] = serie;
+            out[i] = serie.getTitol() + " - " + String.format("%.2f", serie.getValoració());
         }
         
         return out;
@@ -162,6 +177,11 @@ public class MainController extends Controller{
             return;
         }
         
+         if(TotSeries.getInstance().getUsuariActual() instanceof Admin){
+            TotSeries.getInstance().showView(new ErrorView(Constants.ERROR_VISUALITZAR_ADMINISTRADOR));
+            return;
+        }
+        
         HashMap<String, Serie> series = TotSeries.getInstance().getDataManager().getSeries();
         ArrayList<Episodi> episodis = ((Map.Entry<String, Serie>)series.entrySet().toArray()[serie]).getValue().getEpisodis();
         ArrayList<Episodi> out = new ArrayList<>();
@@ -169,8 +189,11 @@ public class MainController extends Controller{
             if(Integer.parseInt(e.getNumTemporada()) == temporada) out.add(e);
         }
         
-        TotSeries.getInstance().showView(new EpisodeView(out.get(episodi)));
+        TotSeries.getInstance().showView(new EpisodeView(((MainView)getView()), out.get(episodi)));
     }
     
-    
+    public void valorarSerieAdmin(int selection){
+        Serie serie = series[selection];
+        TotSeries.getInstance().showView(new ValoracioSerieAdminView(((MainView)getView()), serie));
+    }
 }

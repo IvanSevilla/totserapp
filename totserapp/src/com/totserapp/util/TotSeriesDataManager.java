@@ -156,50 +156,5 @@ public class TotSeriesDataManager {
     
     public HashMap<String, Serie> getSeries() {
         return series;
-    }
-    
-    
-    public ArrayList<Episodi> getEpisodisMesValorats(){
-        TotSeries totSeries = TotSeries.getInstance();
-        ArrayList<Episodi> episodis = new ArrayList<>();
-        
-        //Meter todos los episodios de todas las series en una misma lista.
-        
-         for(Map.Entry<String, Serie> entry : totSeries.getDataManager().getSeries().entrySet()) {
-            Serie serie = entry.getValue();
-            
-            for(int e = 0; e < serie.getEpisodis().size(); e++){
-                episodis.add(serie.getEpisodis().get(e));
-            }
-            
-         }
-        
-        // Ordenar por la media de valoraciones
-        
-        Collections.sort(episodis, new Comparator<Episodi>() {
-            @Override
-            public int compare(Episodi a, Episodi b) {
-                if(a.getMitjanaValoracions() > b.getMitjanaValoracions()){
-                    return -1;
-                }if(a.getMitjanaValoracions() < b.getMitjanaValoracions()){
-                    return 1;
-                }else{
-                    return 0;
-                }
-            }
-        });
-        
-        // Mostrar los 10 primeros. Eliminar el resto.
-        
-        if(episodis.size() > 10){
-            for(int e = episodis.size() - 1; e >= 10; e--){
-                episodis.remove(e);
-            }
-        }
-        
-        return episodis;
-    }
-    
-    
-	
+    }	
 }

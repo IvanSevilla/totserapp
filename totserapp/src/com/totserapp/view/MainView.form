@@ -36,14 +36,14 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="panel_serie_episode" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="panel_top_views" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="panel_top_ten" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txt_state" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_state" min="-2" pref="450" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -170,7 +170,11 @@
                     <StringItem index="4" value="Item 5"/>
                   </StringArray>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="list_3MouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -179,6 +183,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="label_top_ten">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="+ VALORADES"/>
           </Properties>
         </Component>
@@ -231,6 +238,7 @@
                     <StringItem index="4" value="Item 5"/>
                   </StringArray>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -240,6 +248,9 @@
         </Container>
         <Component class="javax.swing.JLabel" name="label_top_views">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="+ VISTES"/>
           </Properties>
         </Component>
@@ -272,12 +283,12 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_back" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbox_temp" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_back" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="label_top_views1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="387" max="-2" attributes="0"/>
@@ -342,6 +353,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="label_top_views1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CATALEG"/>
           </Properties>
         </Component>
@@ -349,6 +363,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="txt_state">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>

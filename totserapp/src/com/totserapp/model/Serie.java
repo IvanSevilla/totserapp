@@ -6,12 +6,14 @@ import java.util.ArrayList;
 public class Serie {
     private final ArrayList<Artista> artistes = new ArrayList<>();
     private final ArrayList<Episodi> episodis = new ArrayList<>();
+    private ArrayList<Valoracio> valoracions = new ArrayList<>();
     
     private Productora productora;
 
     private String titol, descripcio;
     
-    private int valoració, visualitzacions;
+    private int  visualitzacions;
+    private float valoració;
     
     public ArrayList<Episodi> getEpisodis() {
         return episodis;
@@ -57,11 +59,11 @@ public class Serie {
         return productora;
     }
 
-    public int getValoració() {
+    public float getValoració() {
         return valoració;
     }
 
-    public void setValoració(int valoració) {
+    public void setValoració(float valoració) {
         this.valoració = valoració;
     }
 
@@ -72,5 +74,12 @@ public class Serie {
     public void setVisualitzacions(int visualitzacions) {
         this.visualitzacions = visualitzacions;
     }
-   
+    
+    public void valorar(Usuari usuari, int valor){
+        valoracions.add(new Valoracio(valor, null));
+    }
+
+    public ArrayList<Valoracio> getValoracions() {
+        return valoracions;
+    }
 }
